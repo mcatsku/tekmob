@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🧮 Web Calculator</title>
+    <title>🧮 Atte's Advanced Calculator</title>
     <style>
         * {
             margin: 0;
@@ -13,22 +13,39 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
+            position: relative;
+        }
+
+        body::before {
+            content: "ATTE";
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            font-size: 15vw;
+            font-weight: 900;
+            color: rgba(255, 140, 0, 0.05);
+            z-index: 0;
+            pointer-events: none;
+            user-select: none;
         }
 
         .calculator-container {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.98);
             border-radius: 20px;
             padding: 30px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 0 2px rgba(255, 140, 0, 0.2);
             backdrop-filter: blur(10px);
             max-width: 500px;
             width: 100%;
+            position: relative;
+            z-index: 1;
         }
 
         .header {
@@ -37,14 +54,32 @@
         }
 
         .header h1 {
-            color: #333;
+            color: #1a1a1a;
             font-size: 2.5em;
             margin-bottom: 10px;
+            position: relative;
+        }
+
+        .header h1::after {
+            content: "by Atte";
+            position: absolute;
+            top: -10px;
+            right: -20px;
+            font-size: 0.3em;
+            color: #ff8c00;
+            font-weight: 600;
+            transform: rotate(15deg);
         }
 
         .header p {
-            color: #666;
+            color: #2d2d2d;
             font-size: 1.1em;
+        }
+
+        .header p::after {
+            content: " - Crafted by Atte";
+            color: #ff8c00;
+            font-weight: 600;
         }
 
         .input-section {
