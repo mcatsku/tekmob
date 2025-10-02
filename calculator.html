@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧮 Web Calculator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .calculator-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #333;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        .input-section {
+            margin-bottom: 20px;
+        }
+
+        .expression-input {
+            width: 100%;
+            padding: 15px 20px;
+            font-size: 1.2em;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            outline: none;
+            transition: all 0.3s ease;
+            font-family: 'Courier New', monospace;
+        }
+
+        .expression-input:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .buttons-section {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            padding: 15px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 600;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-number {
+            background: #f8f9fa;
+            color: #333;
+        }
+
+        .btn-number:hover {
+            background: #e9ecef;
+        }
+
+        .btn-operator {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-operator:hover {
+            background: #5a6fd8;
+        }
+
+        .btn-function {
+            background: #28a745;
+            color: white;
+            font-size: 0.9em;
+        }
+
+        .btn-function:hover {
+            background: #218838;
+        }
+
+        .btn-special {
+            background: #dc3545;
+            color: white;
+        }
+
+        .btn-special:hover {
+            background: #c82333;
+        }
+
+        .calculate-btn {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.3em;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        .calculate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .result-section {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .result-label {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 5px;
+        }
+
+        .result-value {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #333;
+            font-family: 'Courier New', monospace;
+            word-break: break-all;
+        }
+
+        .history-section {
+            max-height: 200px;
+            overflow-y: auto;
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 15px;
+        }
+
+        .history-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+            border-bottom: 1px solid #e0e0e0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .history-item:last-child {
+            border-bottom: none;
+        }
+
+        .history-expression {
+            color: #666;
+        }
+
+        .history-result {
+            color: #333;
+            font-weight: bold;
+        }
+
+        .help-section {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 10px;
+            font-size: 0.9em;
+            color: #555;
+        }
+
+        .help-section h3 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .help-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .help-section li {
+            margin-bottom: 5px;
+        }
+
+        .error {
+            color: #dc3545;
+            font-weight: bold;
+        }
+
+        @media (max-width: 600px) {
+            .calculator-container {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .buttons-section {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator-container">
+        <div class="header">
+            <h1>🧮 Web Calculator</h1>
+            <p>Advanced calculator with functions and constants</p>
+        </div>
+
+        <div class="input-section">
+            <input type="text" id="expressionInput" class="expression-input" 
+                   placeholder="Enter your expression (e.g., 2 + 3 * 4, sqrt(16), sin(pi/2))"
+                   autocomplete="off">
+        </div>
+
+        <div class="buttons-section">
+            <!-- Numbers -->
+            <button class="btn btn-number" onclick="appendToExpression('7')">7</button>
+            <button class="btn btn-number" onclick="appendToExpression('8')">8</button>
+            <button class="btn btn-number" onclick="appendToExpression('9')">9</button>
+            <button class="btn btn-operator" onclick="appendToExpression('/')">/</button>
+            
+            <button class="btn btn-number" onclick="appendToExpression('4')">4</button>
+            <button class="btn btn-number" onclick="appendToExpression('5')">5</button>
+            <button class="btn btn-number" onclick="appendToExpression('6')">6</button>
+            <button class="btn btn-operator" onclick="appendToExpression('*')">*</button>
+            
+            <button class="btn btn-number" onclick="appendToExpression('1')">1</button>
+            <button class="btn btn-number" onclick="appendToExpression('2')">2</button>
+            <button class="btn btn-number" onclick="appendToExpression('3')">3</button>
+            <button class="btn btn-operator" onclick="appendToExpression('-')">-</button>
+            
+            <button class="btn btn-number" onclick="appendToExpression('0')">0</button>
+            <button class="btn btn-number" onclick="appendToExpression('.')">.</button>
+            <button class="btn btn-operator" onclick="appendToExpression('(')">(</button>
+            <button class="btn btn-operator" onclick="appendToExpression('+')">+</button>
+            
+            <!-- Functions and operators -->
+            <button class="btn btn-operator" onclick="appendToExpression(')')">)</button>
+            <button class="btn btn-operator" onclick="appendToExpression('^')">^</button>
+            <button class="btn btn-operator" onclick="appendToExpression('%')">%</button>
+            <button class="btn btn-special" onclick="clearExpression()">Clear</button>
+            
+            <button class="btn btn-function" onclick="appendToExpression('sqrt(')">√</button>
+            <button class="btn btn-function" onclick="appendToExpression('sin(')">sin</button>
+            <button class="btn btn-function" onclick="appendToExpression('cos(')">cos</button>
+            <button class="btn btn-function" onclick="appendToExpression('tan(')">tan</button>
+            
+            <button class="btn btn-function" onclick="appendToExpression('log(')">log</button>
+            <button class="btn btn-function" onclick="appendToExpression('ln(')">ln</button>
+            <button class="btn btn-function" onclick="appendToExpression('pi')">π</button>
+            <button class="btn btn-function" onclick="appendToExpression('e')">e</button>
+        </div>
+
+        <button class="calculate-btn" onclick="calculate()">Calculate</button>
+
+        <div class="result-section">
+            <div class="result-label">Result:</div>
+            <div id="result" class="result-value">Ready to calculate...</div>
+        </div>
+
+        <div class="history-section" id="history">
+            <div style="text-align: center; color: #999; padding: 20px;">
+                Calculation history will appear here
+            </div>
+        </div>
+
+        <div class="help-section">
+            <h3>Quick Help:</h3>
+            <ul>
+                <li><strong>Operations:</strong> +, -, *, /, ^, %, ( )</li>
+                <li><strong>Functions:</strong> sqrt, sin, cos, tan, log, ln</li>
+                <li><strong>Constants:</strong> pi, e</li>
+                <li><strong>Examples:</strong> 2+3*4, sqrt(16), sin(pi/2)</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        class WebCalculator {
+            constructor() {
+                this.operators = {
+                    '+': { precedence: 1, fn: (a, b) => a + b },
+                    '-': { precedence: 1, fn: (a, b) => a - b },
+                    '*': { precedence: 2, fn: (a, b) => a * b },
+                    '/': { precedence: 2, fn: (a, b) => a / b },
+                    '%': { precedence: 2, fn: (a, b) => a % b },
+                    '^': { precedence: 3, fn: (a, b) => Math.pow(a, b) },
+                    '**': { precedence: 3, fn: (a, b) => Math.pow(a, b) }
+                };
+
+                this.functions = {
+                    'sin': Math.sin,
+                    'cos': Math.cos,
+                    'tan': Math.tan,
+                    'sqrt': Math.sqrt,
+                    'log': Math.log10,
+                    'ln': Math.log,
+                    'abs': Math.abs,
+                    'round': Math.round
+                };
+
+                this.constants = {
+                    'pi': Math.PI,
+                    'e': Math.E
+                };
+
+                this.history = [];
+            }
+
+            tokenize(expression) {
+                // Replace constants
+                for (const [name, value] of Object.entries(this.constants)) {
+                    expression = expression.replace(new RegExp(name, 'g'), value.toString());
+                }
+
+                // Tokenize
+                const pattern = /(\d+\.?\d*|[+\-*/()^%]|\*\*|[a-zA-Z_]\w*)/g;
+                return expression.replace(/\s/g, '').match(pattern) || [];
+            }
+
+            infixToPostfix(tokens) {
+                const output = [];
+                const operatorStack = [];
+
+                for (const token of tokens) {
+                    if (this.isNumber(token)) {
+                        output.push(token);
+                    } else if (token in this.functions) {
+                        operatorStack.push(token);
+                    } else if (token in this.operators) {
+                        while (operatorStack.length > 0 &&
+                               operatorStack[operatorStack.length - 1] !== '(' &&
+                               operatorStack[operatorStack.length - 1] in this.operators &&
+                               this.operators[operatorStack[operatorStack.length - 1]].precedence >= 
+                               this.operators[token].precedence) {
+                            output.push(operatorStack.pop());
+                        }
+                        operatorStack.push(token);
+                    } else if (token === '(') {
+                        operatorStack.push(token);
+                    } else if (token === ')') {
+                        while (operatorStack.length > 0 && operatorStack[operatorStack.length - 1] !== '(') {
+                            output.push(operatorStack.pop());
+                        }
+                        if (operatorStack.length > 0 && operatorStack[operatorStack.length - 1] === '(') {
+                            operatorStack.pop();
+                        }
+                        if (operatorStack.length > 0 && operatorStack[operatorStack.length - 1] in this.functions) {
+                            output.push(operatorStack.pop());
+                        }
+                    }
+                }
+
+                while (operatorStack.length > 0) {
+                    output.push(operatorStack.pop());
+                }
+
+                return output;
+            }
+
+            evaluatePostfix(postfix) {
+                const stack = [];
+
+                for (const token of postfix) {
+                    if (this.isNumber(token)) {
+                        stack.push(parseFloat(token));
+                    } else if (token in this.operators) {
+                        if (stack.length < 2) {
+                            throw new Error(`Not enough operands for '${token}'`);
+                        }
+                        const b = stack.pop();
+                        const a = stack.pop();
+                        const result = this.operators[token].fn(a, b);
+                        stack.push(result);
+                    } else if (token in this.functions) {
+                        if (stack.length < 1) {
+                            throw new Error(`Not enough arguments for '${token}'`);
+                        }
+                        const a = stack.pop();
+                        const result = this.functions[token](a);
+                        stack.push(result);
+                    }
+                }
+
+                if (stack.length !== 1) {
+                    throw new Error('Invalid expression');
+                }
+
+                return stack[0];
+            }
+
+            isNumber(token) {
+                return !isNaN(parseFloat(token)) && isFinite(token);
+            }
+
+            calculate(expression) {
+                try {
+                    if (!expression.trim()) {
+                        throw new Error('Empty expression');
+                    }
+
+                    const tokens = this.tokenize(expression);
+                    const postfix = this.infixToPostfix(tokens);
+                    const result = this.evaluatePostfix(postfix);
+
+                    if (!isFinite(result)) {
+                        throw new Error('Result is not finite');
+                    }
+
+                    // Format result
+                    const formattedResult = Number.isInteger(result) ? result : 
+                                          parseFloat(result.toFixed(10));
+                    
+                    // Add to history
+                    this.addToHistory(expression, formattedResult);
+                    
+                    return formattedResult;
+
+                } catch (error) {
+                    if (error.message.includes('Division by zero') || 
+                        (typeof error.result === 'number' && !isFinite(error.result))) {
+                        throw new Error('Division by zero');
+                    }
+                    throw error;
+                }
+            }
+
+            addToHistory(expression, result) {
+                this.history.unshift({ expression, result });
+                if (this.history.length > 10) {
+                    this.history.pop();
+                }
+                this.updateHistoryDisplay();
+            }
+
+            updateHistoryDisplay() {
+                const historyDiv = document.getElementById('history');
+                if (this.history.length === 0) {
+                    historyDiv.innerHTML = '<div style="text-align: center; color: #999; padding: 20px;">Calculation history will appear here</div>';
+                    return;
+                }
+
+                historyDiv.innerHTML = this.history.map(item => `
+                    <div class="history-item">
+                        <span class="history-expression">${item.expression}</span>
+                        <span class="history-result">${item.result}</span>
+                    </div>
+                `).join('');
+            }
+        }
+
+        // Initialize calculator
+        const calculator = new WebCalculator();
+
+        // DOM functions
+        function appendToExpression(value) {
+            const input = document.getElementById('expressionInput');
+            input.value += value;
+            input.focus();
+        }
+
+        function clearExpression() {
+            document.getElementById('expressionInput').value = '';
+            document.getElementById('result').textContent = 'Ready to calculate...';
+            document.getElementById('result').className = 'result-value';
+        }
+
+        function calculate() {
+            const expression = document.getElementById('expressionInput').value;
+            const resultDiv = document.getElementById('result');
+            
+            try {
+                const result = calculator.calculate(expression);
+                resultDiv.textContent = result;
+                resultDiv.className = 'result-value';
+            } catch (error) {
+                resultDiv.textContent = `Error: ${error.message}`;
+                resultDiv.className = 'result-value error';
+            }
+        }
+
+        // Event listeners
+        document.getElementById('expressionInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                calculate();
+            }
+        });
+
+        // Focus input on page load
+        window.addEventListener('load', function() {
+            document.getElementById('expressionInput').focus();
+        });
+    </script>
+</body>
+</html>
