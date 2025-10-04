@@ -4,7 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🧮 Atte's Advanced Calculator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Noto+Sans+JP:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --poster-blue: #77c7e5;
+            --poster-yellow: #ffe36e;
+            --ink: #111111;
+            --paper: #ffffff;
+            --paper-bg: #f3f3f3;
+        }
         * {
             margin: 0;
             padding: 0;
@@ -12,8 +22,8 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            font-family: 'Noto Sans JP', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+            background: var(--paper-bg);
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -22,27 +32,15 @@
             position: relative;
         }
 
-        body::before {
-            content: "ATTE";
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) rotate(-45deg);
-            font-size: 15vw;
-            font-weight: 900;
-            color: rgba(255, 140, 0, 0.05);
-            z-index: 0;
-            pointer-events: none;
-            user-select: none;
-        }
+        /* remove previous large watermark for cleaner poster */
 
         .calculator-container {
-            background: rgba(255, 255, 255, 0.98);
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 0 2px rgba(255, 140, 0, 0.2);
-            backdrop-filter: blur(10px);
-            max-width: 500px;
+            background: var(--paper);
+            border-radius: 24px;
+            padding: 28px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+            border: 3px solid var(--ink);
+            max-width: 560px;
             width: 100%;
             position: relative;
             z-index: 1;
@@ -63,12 +61,13 @@
         .header h1::after {
             content: "by Atte";
             position: absolute;
-            top: -10px;
-            right: -20px;
-            font-size: 0.3em;
-            color: #ff8c00;
-            font-weight: 600;
-            transform: rotate(15deg);
+            top: -12px;
+            right: -18px;
+            font-size: 0.32em;
+            color: var(--ink);
+            font-weight: 700;
+            font-family: 'Caveat', cursive;
+            transform: rotate(8deg);
         }
 
         .header p {
@@ -78,7 +77,7 @@
 
         .header p::after {
             content: " - Crafted by Atte";
-            color: #ff8c00;
+            color: var(--ink);
             font-weight: 600;
         }
 
@@ -90,17 +89,17 @@
             width: 100%;
             padding: 15px 20px;
             font-size: 1.2em;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
+            border: 2px solid var(--ink);
+            border-radius: 12px;
             outline: none;
             transition: all 0.3s ease;
             font-family: 'Courier New', monospace;
-            background: #fafafa;
+            background: #fff;
         }
 
         .expression-input:focus {
-            border-color: #ff8c00;
-            box-shadow: 0 0 0 3px rgba(255, 140, 0, 0.1);
+            border-color: var(--ink);
+            box-shadow: 0 0 0 4px rgba(17,17,17,0.08);
         }
 
         .expression-input::placeholder {
@@ -130,59 +129,55 @@
         }
 
         .btn-number {
-            background: #f8f9fa;
-            color: #1a1a1a;
-            border: 1px solid #e0e0e0;
+            background: #ffffff;
+            color: var(--ink);
+            border: 2px solid var(--ink);
         }
 
         .btn-number:hover {
-            background: #ff8c00;
-            color: white;
-            border-color: #ff8c00;
+            background: var(--poster-yellow);
         }
 
         .btn-operator {
-            background: #1a1a1a;
-            color: white;
-            border: 1px solid #2d2d2d;
+            background: var(--ink);
+            color: #ffffff;
+            border: 2px solid var(--ink);
         }
 
         .btn-operator:hover {
-            background: #ff8c00;
-            border-color: #ff8c00;
+            background: var(--poster-blue);
+            color: var(--ink);
         }
 
         .btn-function {
-            background: #ff8c00;
-            color: white;
+            background: var(--poster-blue);
+            color: var(--ink);
             font-size: 0.9em;
-            border: 1px solid #ff8c00;
+            border: 2px solid var(--ink);
         }
 
         .btn-function:hover {
-            background: #e67e00;
-            border-color: #e67e00;
+            background: var(--poster-yellow);
         }
 
         .btn-special {
-            background: #2d2d2d;
-            color: white;
-            border: 1px solid #1a1a1a;
+            background: #ffffff;
+            color: var(--ink);
+            border: 2px dashed var(--ink);
         }
 
         .btn-special:hover {
-            background: #ff8c00;
-            border-color: #ff8c00;
+            background: var(--poster-yellow);
         }
 
         .calculate-btn {
             width: 100%;
             padding: 15px;
             font-size: 1.3em;
-            background: linear-gradient(45deg, #ff8c00, #e67e00);
-            color: white;
-            border: none;
-            border-radius: 10px;
+            background: var(--ink);
+            color: #fff;
+            border: 2px solid var(--ink);
+            border-radius: 12px;
             cursor: pointer;
             font-weight: bold;
             transition: all 0.3s ease;
@@ -190,36 +185,20 @@
             position: relative;
         }
 
-        .calculate-btn::before {
-            content: "Atte's ";
-            font-size: 0.7em;
-            opacity: 0.8;
-        }
-
         .calculate-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(255, 140, 0, 0.4);
-            background: linear-gradient(45deg, #e67e00, #cc7000);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+            background: var(--poster-blue);
+            color: var(--ink);
         }
 
         .result-section {
-            background: #f8f9fa;
-            border-radius: 10px;
+            background: #ffffff;
+            border-radius: 14px;
             padding: 20px;
             margin-bottom: 20px;
-            border: 2px solid #ff8c00;
+            border: 2px solid var(--ink);
             position: relative;
-        }
-
-        .result-section::after {
-            content: "A";
-            position: absolute;
-            top: 5px;
-            right: 10px;
-            font-size: 0.8em;
-            color: #ff8c00;
-            font-weight: bold;
-            opacity: 0.6;
         }
 
         .result-label {
@@ -230,7 +209,7 @@
 
         .result-label::before {
             content: "Atte's ";
-            color: #ff8c00;
+            color: var(--ink);
             font-weight: 600;
         }
 
@@ -245,10 +224,10 @@
         .history-section {
             max-height: 200px;
             overflow-y: auto;
-            background: #f8f9fa;
-            border-radius: 10px;
+            background: #ffffff;
+            border-radius: 14px;
             padding: 15px;
-            border: 1px solid #e0e0e0;
+            border: 2px solid var(--ink);
             position: relative;
         }
 
@@ -294,24 +273,26 @@
         .help-section {
             margin-top: 20px;
             padding: 15px;
-            background: rgba(255, 140, 0, 0.1);
-            border-radius: 10px;
+            background: #ffffff;
+            border-radius: 14px;
             font-size: 0.9em;
             color: #2d2d2d;
-            border: 1px solid rgba(255, 140, 0, 0.2);
+            border: 2px solid var(--ink);
             position: relative;
         }
 
         .help-section::before {
             content: "Atte's Guide";
             position: absolute;
-            top: -10px;
+            top: -12px;
             left: 15px;
-            background: white;
-            color: #ff8c00;
-            font-size: 0.8em;
+            background: var(--paper);
+            color: var(--ink);
+            font-size: 0.9em;
             font-weight: bold;
-            padding: 0 5px;
+            padding: 0 6px;
+            border: 2px solid var(--ink);
+            border-radius: 8px;
         }
 
         .help-section h3 {
@@ -321,7 +302,7 @@
 
         .help-section h3::after {
             content: " by Atte";
-            color: #ff8c00;
+            color: var(--ink);
             font-size: 0.7em;
             font-weight: normal;
         }
@@ -351,16 +332,38 @@
             text-align: center;
             margin-top: 20px;
             padding: 10px;
-            border-top: 2px solid #ff8c00;
+            border-top: 2px solid var(--ink);
             color: #2d2d2d;
             font-size: 0.9em;
         }
 
         .footer-signature::before {
             content: "© 2024 Atte's Calculator - ";
-            color: #ff8c00;
+            color: var(--ink);
             font-weight: bold;
         }
+
+        /* Poster panels */
+        .panel {
+            position: relative;
+            border-radius: 18px;
+            padding: 16px;
+            border: 3px solid var(--ink);
+            margin-bottom: 16px;
+        }
+        .panel-blue { background: var(--poster-blue); }
+        .panel-yellow { background: var(--poster-yellow); }
+
+        .scribble {
+            position: absolute;
+            font-family: 'Caveat', cursive;
+            color: var(--ink);
+            font-size: 28px;
+            font-weight: 700;
+            pointer-events: none;
+        }
+        .scribble.touch { top: -10px; right: 14px; transform: rotate(8deg); }
+        .scribble.mail { top: -10px; left: 14px; transform: rotate(-6deg); }
 
         @media (max-width: 600px) {
             .calculator-container {
@@ -379,18 +382,30 @@
 </head>
 <body>
     <div class="calculator-container">
+        <div class="nav" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+            <div><strong>Atte's Calculator</strong></div>
+            <div>
+                <a href="about.html" style="color:#111;text-decoration:none;border:2px solid #111;padding:6px 10px;border-radius:10px;background:#fff;margin-right:8px">About</a>
+                <a href="resume.html" style="color:#111;text-decoration:none;border:2px solid #111;padding:6px 10px;border-radius:10px;background:#fff">Resume</a>
+            </div>
+        </div>
         <div class="header">
             <h1>🧮 Atte's Calculator</h1>
             <p>Advanced mathematical computing tool</p>
         </div>
 
-        <div class="input-section">
+        <div class="panel panel-blue">
+            <div class="scribble touch">Touch!</div>
+            <div class="input-section">
             <input type="text" id="expressionInput" class="expression-input" 
                    placeholder="Atte's Calculator: Enter your expression (e.g., 2 + 3 * 4, sqrt(16), sin(pi/2))"
                    autocomplete="off">
+            </div>
         </div>
 
-        <div class="buttons-section">
+        <div class="panel panel-yellow">
+            <div class="scribble mail">Mail!</div>
+            <div class="buttons-section">
             <!-- Numbers -->
             <button class="btn btn-number" onclick="appendToExpression('7')">7</button>
             <button class="btn btn-number" onclick="appendToExpression('8')">8</button>
@@ -427,21 +442,27 @@
             <button class="btn btn-function" onclick="appendToExpression('ln(')">ln</button>
             <button class="btn btn-function" onclick="appendToExpression('pi')">π</button>
             <button class="btn btn-function" onclick="appendToExpression('e')">e</button>
+            </div>
         </div>
 
         <button class="calculate-btn" onclick="calculate()">Calculate</button>
 
+        <div class="panel panel-blue" style="padding:0; border:none; background:transparent;">
         <div class="result-section">
             <div class="result-label">Result:</div>
             <div id="result" class="result-value">Ready to calculate...</div>
         </div>
+        </div>
 
+        <div class="panel panel-yellow" style="padding:0; border:none; background:transparent;">
         <div class="history-section" id="history">
             <div style="text-align: center; color: #999; padding: 20px;">
                 Calculation history will appear here
             </div>
         </div>
+        </div>
 
+        <div class="panel panel-blue" style="padding:0; border:none; background:transparent;">
         <div class="help-section">
             <h3>Quick Help:</h3>
             <ul>
@@ -450,6 +471,7 @@
                 <li><strong>Constants:</strong> pi, e</li>
                 <li><strong>Examples:</strong> 2+3*4, sqrt(16), sin(pi/2)</li>
             </ul>
+        </div>
         </div>
         
         <div class="footer-signature">
