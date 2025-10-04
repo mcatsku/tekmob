@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About • Atte's Calculator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Noto+Sans+JP:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root{--poster-blue:#77c7e5;--poster-yellow:#ffe36e;--ink:#111111;--paper:#ffffff;--paper-bg:#f3f3f3}
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:'Noto Sans JP',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--paper-bg);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+        .page{background:var(--paper);border:3px solid var(--ink);border-radius:24px;max-width:760px;width:100%;padding:28px;box-shadow:0 10px 30px rgba(0,0,0,.12)}
+        .nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+        .nav a{color:var(--ink);text-decoration:none;border:2px solid var(--ink);padding:6px 10px;border-radius:10px;background:#fff}
+        .nav a:hover{background:var(--poster-yellow)}
+        .panel{position:relative;border-radius:18px;padding:16px;border:3px solid var(--ink);margin-bottom:16px}
+        .panel-blue{background:var(--poster-blue)}
+        .panel-yellow{background:var(--poster-yellow)}
+        .title{font-size:28px;font-weight:700;margin-bottom:6px;position:relative}
+        .title small{position:absolute;right:-12px;top:-12px;font-family:'Caveat',cursive;font-size:18px}
+        p{color:#222;line-height:1.6}
+        .credit{margin-top:10px;font-family:'Caveat',cursive;font-size:22px}
+        .list{margin-top:8px}
+        .list li{margin-left:16px}
+    </style>
+</head>
+<body>
+    <main class="page">
+        <div class="nav">
+            <div><strong>Atte's Calculator</strong></div>
+            <div>
+                <a href="index.html">Calculator</a>
+                <a href="resume.html">Resume</a>
+            </div>
+        </div>
+
+        <section class="panel panel-blue">
+            <h1 class="title">About this project <small>by Atte</small></h1>
+            <p>This is a poster-inspired, browser-based calculator. It supports arithmetic, parentheses, and functions like sqrt, sin, cos, tan, log, and ln. Designed for simplicity and clarity, with bold colors and handwritten accents.</p>
+            <p class="credit">Touch! → Calculate • Mail! → Share</p>
+        </section>
+
+        <section class="panel panel-yellow">
+            <h2 class="title">How to use</h2>
+            <ul class="list">
+                <li>Type an expression and press Calculate or Enter.</li>
+                <li>Use functions like <code>sqrt(16)</code>, <code>sin(pi/2)</code>.</li>
+                <li>History keeps your recent results.</li>
+            </ul>
+        </section>
+
+        <section class="panel" style="background:#fff">
+            <h2 class="title">Credits</h2>
+            <p>Built with vanilla HTML, CSS, and JavaScript. Typography by Noto Sans JP and Caveat.</p>
+        </section>
+
+    </main>
+</body>
+</html>
+
+
