@@ -36,35 +36,20 @@
         </div>
 
         <section class="panel">
-            <!-- Primary: PDF embed. Place your file as resume.pdf in this folder -->
-            <object id="resumeObject" data="resume.pdf" type="application/pdf" width="100%" height="75vh">
-                <!-- Fallback: show image preview if provided at assets/resume.png -->
-                <img src="assets/resume.png" alt="Resume preview" class="img-preview" />
-            </object>
-            <div class="fallback">Download: <a id="resumeLink" href="resume.pdf" target="_blank" rel="noopener">resume.pdf</a> • Optional image preview path: <code>assets/resume.png</code></div>
-            <div id="resumeNotice" class="fallback" style="display:none;color:#b00020">Resume file not found. Place your PDF as <code>Calculator/resume.pdf</code>, or pass <code>?file=YourFile.pdf</code> in the URL.</div>
+            <div style="text-align: center; padding: 40px; background: #fff; border-radius: 12px; border: 2px dashed var(--ink);">
+                <h2 style="color: var(--ink); margin-bottom: 20px;">📄 Resume Coming Soon</h2>
+                <p style="color: #666; margin-bottom: 20px;">Atte's resume will be available here soon!</p>
+                <div style="background: var(--poster-yellow); padding: 15px; border-radius: 8px; border: 2px solid var(--ink);">
+                    <p style="margin: 0; color: var(--ink); font-weight: 600;">To add your resume:</p>
+                    <ol style="text-align: left; margin: 10px 0 0 0; color: var(--ink);">
+                        <li>Save your resume as <code>resume.pdf</code></li>
+                        <li>Place it in the Calculator folder</li>
+                        <li>Commit and push to GitHub</li>
+                    </ol>
+                </div>
+            </div>
         </section>
-        <script>
-            (function(){
-                const params = new URLSearchParams(window.location.search);
-                const file = params.get('file') || 'resume.pdf';
-                const obj = document.getElementById('resumeObject');
-                const link = document.getElementById('resumeLink');
-                obj.setAttribute('data', file);
-                link.setAttribute('href', file);
-
-                // Only probe existence when served over http/https. When opened as a local
-                // file (file://), browsers often block fetch() causing a false "not found".
-                const isLocalFile = location.protocol === 'file:';
-                if (!isLocalFile) {
-                    fetch(file, { method: 'HEAD', cache: 'no-store' }).then(r => {
-                        if (!r.ok) document.getElementById('resumeNotice').style.display = 'block';
-                    }).catch(() => {
-                        document.getElementById('resumeNotice').style.display = 'block';
-                    });
-                }
-            })();
-        </script>
+        <!-- Resume placeholder - add resume.pdf to display actual resume -->
     </main>
 </body>
 </html>
