@@ -3,61 +3,225 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About • Atte's Calculator</title>
+    <title>About - Atte Narhi</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Noto+Sans+JP:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root{--poster-blue:#77c7e5;--poster-yellow:#ffe36e;--ink:#111111;--paper:#ffffff;--paper-bg:#f3f3f3}
-        *{margin:0;padding:0;box-sizing:border-box}
-        body{font-family:'Noto Sans JP',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--paper-bg);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
-        .page{background:var(--paper);border:3px solid var(--ink);border-radius:24px;max-width:760px;width:100%;padding:28px;box-shadow:0 10px 30px rgba(0,0,0,.12)}
-        .nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
-        .nav a{color:var(--ink);text-decoration:none;border:2px solid var(--ink);padding:6px 10px;border-radius:10px;background:#fff}
-        .nav a:hover{background:var(--poster-yellow)}
-        .panel{position:relative;border-radius:18px;padding:16px;border:3px solid var(--ink);margin-bottom:16px}
-        .panel-blue{background:var(--poster-blue)}
-        .panel-yellow{background:var(--poster-yellow)}
-        .title{font-size:28px;font-weight:700;margin-bottom:6px;position:relative}
-        .title small{position:absolute;right:-12px;top:-12px;font-family:'Caveat',cursive;font-size:18px}
-        p{color:#222;line-height:1.6}
-        .credit{margin-top:10px;font-family:'Caveat',cursive;font-size:22px}
-        .list{margin-top:8px}
-        .list li{margin-left:16px}
+        :root {
+            --dark-bg: #000000;
+            --text-primary: #ffffff;
+            --text-secondary: #cccccc;
+            --accent-blue: #4f9cf9;
+            --accent-orange: #ff8c00;
+            --border-light: #333333;
+            --hover-bg: #111111;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .nav-link {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            margin-left: 20px;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-blue);
+        }
+
+        .nav-link.active {
+            color: var(--accent-blue);
+        }
+
+        .main-content {
+            padding: 60px 0;
+        }
+
+        .about-section {
+            margin-bottom: 50px;
+        }
+
+        .about-section h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            color: var(--text-primary);
+        }
+
+        .about-section p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .highlight-box {
+            background: var(--hover-bg);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid var(--border-light);
+            margin: 30px 0;
+        }
+
+        .highlight-box h3 {
+            color: var(--accent-blue);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        .contact-cta {
+            text-align: center;
+            margin-top: 60px;
+            padding: 40px;
+            background: var(--hover-bg);
+            border-radius: 12px;
+            border: 1px solid var(--border-light);
+        }
+
+        .contact-cta h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .contact-cta p {
+            color: var(--text-secondary);
+            margin-bottom: 25px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--accent-blue);
+            color: var(--text-primary);
+            padding: 12px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: var(--accent-orange);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .nav-link {
+                margin-left: 0;
+                margin-right: 20px;
+            }
+
+            .container {
+                padding: 0 15px;
+            }
+        }
     </style>
 </head>
 <body>
-    <main class="page">
-        <div class="nav">
-            <div><strong>Atte's Calculator</strong></div>
-            <div>
-                <a href="index.html">Calculator</a>
-                <a href="resume.html">Resume</a>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>About Atte</h1>
+            <nav>
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link active">About</a>
+            </nav>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <section class="about-section">
+                <h2>My Story</h2>
+                <p>As a creative electrical engineer with a strong tech startup background, I've dedicated my career to helping businesses navigate the complex world of digital transformation. My journey has taken me from hands-on product development to strategic business consulting, always with a focus on bridging the gap between technology and business value.</p>
+                
+                <p>I believe that successful digital transformation isn't just about implementing new technologies—it's about understanding people, processes, and culture. My approach combines technical expertise with business acumen to deliver solutions that truly drive growth and innovation.</p>
+            </section>
+
+            <div class="highlight-box">
+                <h3>My Mission</h3>
+                <p>To help businesses unlock their digital potential through strategic guidance, systematic organization development, and cultural transformation. I'm passionate about making technology accessible and ensuring that digital initiatives deliver real, measurable value.</p>
             </div>
-        </div>
 
-        <section class="panel panel-blue">
-            <h1 class="title">About this project <small>by Atte</small></h1>
-            <p>This is a poster-inspired, browser-based calculator. It supports arithmetic, parentheses, and functions like sqrt, sin, cos, tan, log, and ln. Designed for simplicity and clarity, with bold colors and handwritten accents.</p>
-            <p class="credit">Touch! → Calculate • Mail! → Share</p>
-        </section>
+            <section class="about-section">
+                <h2>What I Do</h2>
+                <p>As a DX Consultant, I work with businesses to:</p>
+                <ul style="margin: 20px 0; padding-left: 20px; color: var(--text-secondary);">
+                    <li>Develop comprehensive digital transformation strategies</li>
+                    <li>Optimize business processes and workflows</li>
+                    <li>Bridge the gap between technical teams and business stakeholders</li>
+                    <li>Drive cultural change that supports digital initiatives</li>
+                    <li>Deliver end-to-end solutions that meet both technical and business requirements</li>
+                </ul>
+            </section>
 
-        <section class="panel panel-yellow">
-            <h2 class="title">How to use</h2>
-            <ul class="list">
-                <li>Type an expression and press Calculate or Enter.</li>
-                <li>Use functions like <code>sqrt(16)</code>, <code>sin(pi/2)</code>.</li>
-                <li>History keeps your recent results.</li>
-            </ul>
-        </section>
+            <section class="about-section">
+                <h2>Why Work With Me?</h2>
+                <p>My unique combination of technical engineering background and business development experience allows me to understand both the technical possibilities and business realities of digital transformation. I've successfully helped companies like Flow Computing and Wolt navigate their digital journeys, and I'm passionate about helping more businesses achieve their digital goals.</p>
+            </section>
 
-        <section class="panel" style="background:#fff">
-            <h2 class="title">Credits</h2>
-            <p>Built with vanilla HTML, CSS, and JavaScript. Typography by Noto Sans JP and Caveat.</p>
-        </section>
+            <div class="contact-cta">
+                <h3>Ready to Transform Your Business?</h3>
+                <p>Let's discuss how I can help you achieve your digital transformation goals.</p>
+                <a href="index.html#contact" class="btn">Get In Touch</a>
+            </div>
+        </main>
+    </div>
 
-    </main>
+    <script>
+        // Add scroll effect to header
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.backgroundColor = 'transparent';
+                header.style.backdropFilter = 'none';
+            }
+        });
+    </script>
 </body>
 </html>
-
-
