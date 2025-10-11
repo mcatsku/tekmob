@@ -3,19 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🧮 Atte's Advanced Calculator</title>
-    <!-- Updated: Force GitHub Pages refresh -->
+    <title>Atte Narhi - DX Consultant</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Noto+Sans+JP:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --poster-blue: #77c7e5;
-            --poster-yellow: #ffe36e;
-            --ink: #111111;
-            --paper: #ffffff;
-            --paper-bg: #f3f3f3;
+            --dark-bg: #000000;
+            --text-primary: #ffffff;
+            --text-secondary: #cccccc;
+            --accent-blue: #4f9cf9;
+            --accent-orange: #ff8c00;
+            --border-light: #333333;
+            --hover-bg: #111111;
         }
+
         * {
             margin: 0;
             padding: 0;
@@ -23,677 +25,582 @@
         }
 
         body {
-            font-family: 'Noto Sans JP', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-            background: var(--paper-bg);
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
             min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            position: relative;
         }
 
-        /* remove previous large watermark for cleaner poster */
-
-        .calculator-container {
-            background: var(--paper);
-            border-radius: 24px;
-            padding: 28px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-            border: 3px solid var(--ink);
-            max-width: 560px;
-            width: 100%;
-            position: relative;
-            z-index: 1;
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
+        /* Header */
         .header {
-            text-align: center;
-            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 0;
+            border-bottom: 1px solid var(--border-light);
         }
 
         .header h1 {
-            color: #1a1a1a;
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            position: relative;
-        }
-
-        .header h1::after {
-            content: "by Atte";
-            position: absolute;
-            top: -12px;
-            right: -18px;
-            font-size: 0.32em;
-            color: var(--ink);
+            font-size: 2.5rem;
             font-weight: 700;
-            font-family: 'Caveat', cursive;
-            transform: rotate(8deg);
-        }
-
-        .header p {
-            color: #2d2d2d;
-            font-size: 1.1em;
-        }
-
-        .header p::after {
-            content: " - Crafted by Atte";
-            color: var(--ink);
-            font-weight: 600;
-        }
-
-        .input-section {
-            margin-bottom: 20px;
-        }
-
-        .expression-input {
-            width: 100%;
-            padding: 15px 20px;
-            font-size: 1.2em;
-            border: 2px solid var(--ink);
-            border-radius: 12px;
-            outline: none;
-            transition: all 0.3s ease;
-            font-family: 'Courier New', monospace;
-            background: #fff;
-        }
-
-        .expression-input:focus {
-            border-color: var(--ink);
-            box-shadow: 0 0 0 4px rgba(17,17,17,0.08);
-        }
-
-        .expression-input::placeholder {
-            color: #999;
-        }
-
-        .buttons-section {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .btn {
-            padding: 15px;
-            font-size: 1.1em;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            font-weight: 600;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .btn-number {
-            background: #ffffff;
-            color: var(--ink);
-            border: 2px solid var(--ink);
-        }
-
-        .btn-number:hover {
-            background: var(--poster-yellow);
-        }
-
-        .btn-operator {
-            background: var(--ink);
-            color: #ffffff;
-            border: 2px solid var(--ink);
-        }
-
-        .btn-operator:hover {
-            background: var(--poster-blue);
-            color: var(--ink);
-        }
-
-        .btn-function {
-            background: var(--poster-blue);
-            color: var(--ink);
-            font-size: 0.9em;
-            border: 2px solid var(--ink);
-        }
-
-        .btn-function:hover {
-            background: var(--poster-yellow);
-        }
-
-        .btn-special {
-            background: #ffffff;
-            color: var(--ink);
-            border: 2px dashed var(--ink);
-        }
-
-        .btn-special:hover {
-            background: var(--poster-yellow);
-        }
-
-        .calculate-btn {
-            width: 100%;
-            padding: 15px;
-            font-size: 1.3em;
-            background: var(--ink);
-            color: #fff;
-            border: 2px solid var(--ink);
-            border-radius: 12px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            margin-bottom: 20px;
-            position: relative;
-        }
-
-        .calculate-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.25);
-            background: var(--poster-blue);
-            color: var(--ink);
-        }
-
-        .result-section {
-            background: #ffffff;
-            border-radius: 14px;
-            padding: 20px;
-            margin-bottom: 20px;
-            border: 2px solid var(--ink);
-            position: relative;
-        }
-
-        .result-label {
-            color: #2d2d2d;
-            font-size: 0.9em;
             margin-bottom: 5px;
         }
 
-        .result-label::before {
-            content: "Atte's ";
-            color: var(--ink);
-            font-weight: 600;
+        .header .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            font-weight: 500;
         }
 
-        .result-value {
-            font-size: 1.8em;
-            font-weight: bold;
-            color: #1a1a1a;
-            font-family: 'Courier New', monospace;
-            word-break: break-all;
+        .nav-link {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
         }
 
-        .history-section {
-            max-height: 200px;
-            overflow-y: auto;
-            background: #ffffff;
-            border-radius: 14px;
-            padding: 15px;
-            border: 2px solid var(--ink);
-            position: relative;
+        .nav-link:hover {
+            color: var(--accent-blue);
         }
 
-        .history-section::before {
-            content: "Atte's History";
-            position: absolute;
-            top: -10px;
-            left: 15px;
-            background: #f8f9fa;
-            color: #ff8c00;
-            font-size: 0.8em;
-            font-weight: bold;
-            padding: 0 5px;
+        /* Main Layout */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 60px;
+            padding: 60px 0;
         }
 
-        .history-item {
+        /* Left Column - Summary & Contact */
+        .left-column {
+            padding-right: 20px;
+        }
+
+        .summary {
+            margin-bottom: 40px;
+        }
+
+        .summary p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .contact-info {
+            background: var(--hover-bg);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid var(--border-light);
+        }
+
+        .contact-item {
             display: flex;
-            justify-content: space-between;
-            padding: 5px 0;
-            border-bottom: 1px solid #e0e0e0;
-            font-family: 'Courier New', monospace;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 1rem;
         }
 
-        .history-item:last-child {
+        .contact-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .contact-item a {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: var(--accent-blue);
+        }
+
+        .arrow-icon {
+            margin-left: 8px;
+            font-size: 0.9rem;
+            color: var(--accent-orange);
+        }
+
+        /* Right Column - Main Content */
+        .section {
+            margin-bottom: 50px;
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            color: var(--text-primary);
+        }
+
+        .experience-item {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .experience-item:last-child {
             border-bottom: none;
         }
 
-        .history-expression {
-            color: #2d2d2d;
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
         }
 
-        .history-result {
-            color: #1a1a1a;
-            font-weight: bold;
+        .job-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-primary);
         }
 
-        .history-result::after {
-            content: " ✓";
-            color: #ff8c00;
-            font-size: 0.8em;
+        .company {
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+            color: var(--accent-blue);
         }
 
-        .help-section {
-            margin-top: 20px;
-            padding: 15px;
-            background: #ffffff;
-            border-radius: 14px;
-            font-size: 0.9em;
-            color: #2d2d2d;
-            border: 2px solid var(--ink);
-            position: relative;
+        .company .arrow-icon {
+            margin-left: 5px;
         }
 
-        .help-section::before {
-            content: "Atte's Guide";
-            position: absolute;
-            top: -12px;
-            left: 15px;
-            background: var(--paper);
-            color: var(--ink);
-            font-size: 0.9em;
-            font-weight: bold;
-            padding: 0 6px;
-            border: 2px solid var(--ink);
-            border-radius: 8px;
+        .job-duration {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
         }
 
-        .help-section h3 {
+        .job-description {
             margin-bottom: 10px;
-            color: #1a1a1a;
         }
 
-        .help-section h3::after {
-            content: " by Atte";
-            color: var(--ink);
-            font-size: 0.7em;
-            font-weight: normal;
-        }
-
-        .help-section ul {
+        .job-description ul {
             list-style: none;
             padding-left: 0;
         }
 
-        .help-section li {
+        .job-description li {
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .job-description li::before {
+            content: "•";
+            color: var(--accent-orange);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-category h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 15px;
+        }
+
+        .skill-category ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .skill-category li {
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .skill-category li::before {
+            content: "•";
+            color: var(--accent-orange);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        /* Education Section */
+        .education-item {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .education-item:last-child {
+            border-bottom: none;
+        }
+
+        .degree {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
             margin-bottom: 5px;
         }
 
-        .help-section li::before {
-            content: "A. ";
-            color: #ff8c00;
-            font-weight: bold;
-            font-size: 0.8em;
+        .institution {
+            font-weight: 500;
+            color: var(--accent-blue);
+            margin-bottom: 5px;
         }
 
-        .error {
-            color: #ff4444;
-            font-weight: bold;
+        .minor {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
         }
 
-        .footer-signature {
+        /* Recommendations Section */
+        .recommendation {
+            background: var(--hover-bg);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid var(--border-light);
+            margin-bottom: 20px;
+        }
+
+        .recommendation:last-child {
+            margin-bottom: 0;
+        }
+
+        .recommendation-text {
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+
+        .recommendation-author {
+            font-size: 0.9rem;
+            color: var(--accent-blue);
+            font-weight: 500;
+        }
+
+        /* Certifications Section */
+        .certification {
+            background: var(--hover-bg);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid var(--border-light);
+        }
+
+        .certification-text {
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+
+        .certification-date {
+            font-size: 0.9rem;
+            color: var(--accent-orange);
+        }
+
+        /* Footer */
+        .footer {
             text-align: center;
-            margin-top: 20px;
-            padding: 10px;
-            border-top: 2px solid var(--ink);
-            color: #2d2d2d;
-            font-size: 0.9em;
+            padding: 40px 0;
+            border-top: 1px solid var(--border-light);
+            margin-top: 60px;
         }
 
-        .footer-signature::before {
-            content: "© 2024 Atte's Calculator - ";
-            color: var(--ink);
-            font-weight: bold;
+        .footer h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
         }
 
-        /* Poster panels */
-        .panel {
-            position: relative;
-            border-radius: 18px;
-            padding: 16px;
-            border: 3px solid var(--ink);
-            margin-bottom: 16px;
-        }
-        .panel-blue { background: var(--poster-blue); }
-        .panel-yellow { background: var(--poster-yellow); }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 40px 0;
+            }
 
-        .scribble {
-            position: absolute;
-            font-family: 'Caveat', cursive;
-            color: var(--ink);
-            font-size: 28px;
-            font-weight: 700;
-            pointer-events: none;
-        }
-        .scribble.touch { top: -10px; right: 14px; transform: rotate(8deg); }
-        .scribble.mail { top: -10px; left: 14px; transform: rotate(-6deg); }
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+            }
 
-        @media (max-width: 600px) {
-            .calculator-container {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .job-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .container {
+                padding: 0 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .header .subtitle {
+                font-size: 1rem;
+            }
+
+            .section h2 {
+                font-size: 1.5rem;
+            }
+
+            .contact-info {
                 padding: 20px;
             }
-            
-            .header h1 {
-                font-size: 2em;
-            }
-            
-            .buttons-section {
-                grid-template-columns: repeat(3, 1fr);
+
+            .recommendation,
+            .certification {
+                padding: 15px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="calculator-container">
-        <div class="nav" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
-            <div><strong>Atte's Calculator</strong></div>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
             <div>
-                <a href="about.html" style="color:#111;text-decoration:none;border:2px solid #111;padding:6px 10px;border-radius:10px;background:#fff;margin-right:8px">About</a>
-                <a href="resume.html" style="color:#111;text-decoration:none;border:2px solid #111;padding:6px 10px;border-radius:10px;background:#fff">Resume</a>
+                <h1>Atte Narhi</h1>
+                <div class="subtitle">DX Consultant</div>
             </div>
-        </div>
-        <div class="header">
-            <h1>🧮 Atte's Calculator</h1>
-            <p>Advanced mathematical computing tool</p>
-        </div>
+            <nav>
+                <a href="#about" class="nav-link">About</a>
+            </nav>
+        </header>
 
-        <div class="panel panel-blue">
-            <div class="scribble touch">Touch!</div>
-            <div class="input-section">
-            <input type="text" id="expressionInput" class="expression-input" 
-                   placeholder="Atte's Calculator: Enter your expression (e.g., 2 + 3 * 4, sqrt(16), sin(pi/2))"
-                   autocomplete="off">
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Left Column -->
+            <aside class="left-column">
+                <section class="summary">
+                    <p>A creative electrical engineer with tech startup background. Passion for systematic organization development and cultural grow.</p>
+                    <p>Helping businessess in product development sales and digital transformation (DX)</p>
+                </section>
+
+                <section class="contact-info">
+                    <div class="contact-item">
+                        <a href="mailto:mcatsku@gmail.com">mcatsku@gmail.com</a>
+                        <span class="arrow-icon">→</span>
+                    </div>
+                    <div class="contact-item">
+                        <a href="tel:+358451084774">(+358) 45 108 4774</a>
+                    </div>
+                    <div class="contact-item">
+                        <a href="https://linkedin.com/in/attenarhi" target="_blank">LinkedIn</a>
+                        <span class="arrow-icon">→</span>
+                    </div>
+                </section>
+            </aside>
+
+            <!-- Right Column -->
+            <div class="right-column">
+                <!-- Experience Section -->
+                <section class="section">
+                    <h2>Experience</h2>
+                    
+                    <div class="experience-item">
+                        <div class="job-header">
+                            <div>
+                                <div class="job-title">Sales Development Representative (SDR)</div>
+                                <div class="company">Agora Legal Oy <span class="arrow-icon">→</span></div>
+                            </div>
+                            <div class="job-duration">October 2025 (ongoing)</div>
+                        </div>
+                        <div class="job-description">
+                            <ul>
+                                <li>Sales consulting with strict KPI requirements, prospecting, contacting and closing clients. Role also included developing information architechture and processess for resource management.</li>
+                                <li>Cliets closed: flow-computing, wolt,</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="experience-item">
+                        <div class="job-header">
+                            <div>
+                                <div class="job-title">Electrical Engineer</div>
+                                <div class="company">Cozify Oy <span class="arrow-icon">→</span></div>
+                            </div>
+                            <div class="job-duration">January 2022 - August 2025 (3 years, 8 months)</div>
+                        </div>
+                        <div class="job-description">
+                            <ul>
+                                <li>Developed and deployed technology solutions using IoT cloud platform with UI and mobile applications. Focus area product development, hardware, systems design, testing and installation.</li>
+                                <li>End to end solutions selling. Interfacing between technological resources and customer needs, providing suitable solutions and support. Cold calling, pitching and customer management with Pipedrive.</li>
+                                <li>Developed a business strategy with the chairman of the board of directors by combining market research and customer insights. Acting as a critical information link between the board and the team.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Skills Section -->
+                <section class="section">
+                    <h2>Skills</h2>
+                    <div class="skills-grid">
+                        <div class="skill-category">
+                            <h3>Sales</h3>
+                            <ul>
+                                <li>Prospecting</li>
+                                <li>Cold Calling</li>
+                                <li>Pitching</li>
+                                <li>Support</li>
+                                <li>Customer Management</li>
+                            </ul>
+                        </div>
+                        <div class="skill-category">
+                            <h3>Business Development</h3>
+                            <ul>
+                                <li>Creative Strategy Development</li>
+                                <li>Model validation and testing</li>
+                                <li>Roadmap for execution</li>
+                            </ul>
+                        </div>
+                        <div class="skill-category">
+                            <h3>Product Development</h3>
+                            <ul>
+                                <li>Design</li>
+                                <li>Prototyping</li>
+                                <li>Testing</li>
+                                <li>Iterating</li>
+                            </ul>
+                        </div>
+                        <div class="skill-category">
+                            <h3>Communication & Collaboration</h3>
+                            <ul>
+                                <li>Confident public speaker</li>
+                                <li>Driving culture transformation</li>
+                                <li>Simplifying technical into simple business</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Education Section -->
+                <section class="section">
+                    <h2>Education</h2>
+                    
+                    <div class="education-item">
+                        <div class="institution">New Jersey City University</div>
+                        <div class="degree">Business Information Systems, B.S.</div>
+                        <div class="minor">Minor: Studio Photography</div>
+                    </div>
+
+                    <div class="education-item">
+                        <div class="institution">Metropolia</div>
+                        <div class="degree">Master of business administrator (MBA)</div>
+                        <div class="minor">Minor: Studio Photo</div>
+                    </div>
+
+                    <div class="education-item">
+                        <div class="institution">Metropolia</div>
+                        <div class="degree">Electrical engineering, B.E.</div>
+                        <div class="minor">Minor: Studio Photo</div>
+                    </div>
+                </section>
+
+                <!-- Recommendations Section -->
+                <section class="section">
+                    <h2>Recommendations:</h2>
+                    
+                    <div class="recommendation">
+                        <div class="recommendation-text">
+                            "Alexandra brings sunshine to creative teams. Her optimism, problem-solving, and clear communication drive success."
+                        </div>
+                        <div class="recommendation-author">Client, Driftwell</div>
+                    </div>
+
+                    <div class="recommendation">
+                        <div class="recommendation-text">
+                            "Alexandra is hungry to tackle new challenges. She's delightful with clients and can diffuse a tense room with her laugh."
+                        </div>
+                        <div class="recommendation-author">Creative Director, Creative Agency XYZ</div>
+                    </div>
+                </section>
+
+                <!-- Certifications Section -->
+                <section class="section">
+                    <h2>Certifications:</h2>
+                    <div class="certification">
+                        <div class="certification-text">Safe Sets International - COVID-19 Level Production Safety</div>
+                        <div class="certification-date">2020</div>
+                    </div>
+                </section>
             </div>
-        </div>
+        </main>
 
-        <div class="panel panel-yellow">
-            <div class="scribble mail">Mail!</div>
-            <div class="buttons-section">
-            <!-- Numbers -->
-            <button class="btn btn-number" onclick="appendToExpression('7')">7</button>
-            <button class="btn btn-number" onclick="appendToExpression('8')">8</button>
-            <button class="btn btn-number" onclick="appendToExpression('9')">9</button>
-            <button class="btn btn-operator" onclick="appendToExpression('/')">/</button>
-            
-            <button class="btn btn-number" onclick="appendToExpression('4')">4</button>
-            <button class="btn btn-number" onclick="appendToExpression('5')">5</button>
-            <button class="btn btn-number" onclick="appendToExpression('6')">6</button>
-            <button class="btn btn-operator" onclick="appendToExpression('*')">*</button>
-            
-            <button class="btn btn-number" onclick="appendToExpression('1')">1</button>
-            <button class="btn btn-number" onclick="appendToExpression('2')">2</button>
-            <button class="btn btn-number" onclick="appendToExpression('3')">3</button>
-            <button class="btn btn-operator" onclick="appendToExpression('-')">-</button>
-            
-            <button class="btn btn-number" onclick="appendToExpression('0')">0</button>
-            <button class="btn btn-number" onclick="appendToExpression('.')">.</button>
-            <button class="btn btn-operator" onclick="appendToExpression('(')">(</button>
-            <button class="btn btn-operator" onclick="appendToExpression('+')">+</button>
-            
-            <!-- Functions and operators -->
-            <button class="btn btn-operator" onclick="appendToExpression(')')">)</button>
-            <button class="btn btn-operator" onclick="appendToExpression('^')">^</button>
-            <button class="btn btn-operator" onclick="appendToExpression('%')">%</button>
-            <button class="btn btn-special" onclick="clearExpression()">Clear</button>
-            
-            <button class="btn btn-function" onclick="appendToExpression('sqrt(')">√</button>
-            <button class="btn btn-function" onclick="appendToExpression('sin(')">sin</button>
-            <button class="btn btn-function" onclick="appendToExpression('cos(')">cos</button>
-            <button class="btn btn-function" onclick="appendToExpression('tan(')">tan</button>
-            
-            <button class="btn btn-function" onclick="appendToExpression('log(')">log</button>
-            <button class="btn btn-function" onclick="appendToExpression('ln(')">ln</button>
-            <button class="btn btn-function" onclick="appendToExpression('pi')">π</button>
-            <button class="btn btn-function" onclick="appendToExpression('e')">e</button>
-            </div>
-        </div>
-
-        <button class="calculate-btn" onclick="calculate()">Calculate</button>
-
-        <div class="panel panel-blue" style="padding:0; border:none; background:transparent;">
-        <div class="result-section">
-            <div class="result-label">Result:</div>
-            <div id="result" class="result-value">Ready to calculate...</div>
-        </div>
-        </div>
-
-        <div class="panel panel-yellow" style="padding:0; border:none; background:transparent;">
-        <div class="history-section" id="history">
-            <div style="text-align: center; color: #999; padding: 20px;">
-                Calculation history will appear here
-            </div>
-        </div>
-        </div>
-
-        <div class="panel panel-blue" style="padding:0; border:none; background:transparent;">
-        <div class="help-section">
-            <h3>Quick Help:</h3>
-            <ul>
-                <li><strong>Operations:</strong> +, -, *, /, ^, %, ( )</li>
-                <li><strong>Functions:</strong> sqrt, sin, cos, tan, log, ln</li>
-                <li><strong>Constants:</strong> pi, e</li>
-                <li><strong>Examples:</strong> 2+3*4, sqrt(16), sin(pi/2)</li>
-            </ul>
-        </div>
-        </div>
-        
-        <div class="footer-signature">
-            Made with ❤️ for mathematical excellence
-        </div>
+        <!-- Footer -->
+        <footer class="footer">
+            <h3>Contact me</h3>
+        </footer>
     </div>
 
     <script>
-        class WebCalculator {
-            constructor() {
-                this.operators = {
-                    '+': { precedence: 1, fn: (a, b) => a + b },
-                    '-': { precedence: 1, fn: (a, b) => a - b },
-                    '*': { precedence: 2, fn: (a, b) => a * b },
-                    '/': { precedence: 2, fn: (a, b) => a / b },
-                    '%': { precedence: 2, fn: (a, b) => a % b },
-                    '^': { precedence: 3, fn: (a, b) => Math.pow(a, b) },
-                    '**': { precedence: 3, fn: (a, b) => Math.pow(a, b) }
-                };
-
-                this.functions = {
-                    'sin': Math.sin,
-                    'cos': Math.cos,
-                    'tan': Math.tan,
-                    'sqrt': Math.sqrt,
-                    'log': Math.log10,
-                    'ln': Math.log,
-                    'abs': Math.abs,
-                    'round': Math.round
-                };
-
-                this.constants = {
-                    'pi': Math.PI,
-                    'e': Math.E
-                };
-
-                this.history = [];
-            }
-
-            tokenize(expression) {
-                // Replace constants
-                for (const [name, value] of Object.entries(this.constants)) {
-                    expression = expression.replace(new RegExp(name, 'g'), value.toString());
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
                 }
+            });
+        });
 
-                // Tokenize
-                const pattern = /(\d+\.?\d*|[+\-*/()^%]|\*\*|[a-zA-Z_]\w*)/g;
-                return expression.replace(/\s/g, '').match(pattern) || [];
-            }
-
-            infixToPostfix(tokens) {
-                const output = [];
-                const operatorStack = [];
-
-                for (const token of tokens) {
-                    if (this.isNumber(token)) {
-                        output.push(token);
-                    } else if (token in this.functions) {
-                        operatorStack.push(token);
-                    } else if (token in this.operators) {
-                        while (operatorStack.length > 0 &&
-                               operatorStack[operatorStack.length - 1] !== '(' &&
-                               operatorStack[operatorStack.length - 1] in this.operators &&
-                               this.operators[operatorStack[operatorStack.length - 1]].precedence >= 
-                               this.operators[token].precedence) {
-                            output.push(operatorStack.pop());
-                        }
-                        operatorStack.push(token);
-                    } else if (token === '(') {
-                        operatorStack.push(token);
-                    } else if (token === ')') {
-                        while (operatorStack.length > 0 && operatorStack[operatorStack.length - 1] !== '(') {
-                            output.push(operatorStack.pop());
-                        }
-                        if (operatorStack.length > 0 && operatorStack[operatorStack.length - 1] === '(') {
-                            operatorStack.pop();
-                        }
-                        if (operatorStack.length > 0 && operatorStack[operatorStack.length - 1] in this.functions) {
-                            output.push(operatorStack.pop());
-                        }
-                    }
-                }
-
-                while (operatorStack.length > 0) {
-                    output.push(operatorStack.pop());
-                }
-
-                return output;
-            }
-
-            evaluatePostfix(postfix) {
-                const stack = [];
-
-                for (const token of postfix) {
-                    if (this.isNumber(token)) {
-                        stack.push(parseFloat(token));
-                    } else if (token in this.operators) {
-                        if (stack.length < 2) {
-                            throw new Error(`Not enough operands for '${token}'`);
-                        }
-                        const b = stack.pop();
-                        const a = stack.pop();
-                        const result = this.operators[token].fn(a, b);
-                        stack.push(result);
-                    } else if (token in this.functions) {
-                        if (stack.length < 1) {
-                            throw new Error(`Not enough arguments for '${token}'`);
-                        }
-                        const a = stack.pop();
-                        const result = this.functions[token](a);
-                        stack.push(result);
-                    }
-                }
-
-                if (stack.length !== 1) {
-                    throw new Error('Invalid expression');
-                }
-
-                return stack[0];
-            }
-
-            isNumber(token) {
-                return !isNaN(parseFloat(token)) && isFinite(token);
-            }
-
-            calculate(expression) {
-                try {
-                    if (!expression.trim()) {
-                        throw new Error('Empty expression');
-                    }
-
-                    const tokens = this.tokenize(expression);
-                    const postfix = this.infixToPostfix(tokens);
-                    const result = this.evaluatePostfix(postfix);
-
-                    if (!isFinite(result)) {
-                        throw new Error('Result is not finite');
-                    }
-
-                    // Format result
-                    const formattedResult = Number.isInteger(result) ? result : 
-                                          parseFloat(result.toFixed(10));
-                    
-                    // Add to history
-                    this.addToHistory(expression, formattedResult);
-                    
-                    return formattedResult;
-
-                } catch (error) {
-                    if (error.message.includes('Division by zero') || 
-                        (typeof error.result === 'number' && !isFinite(error.result))) {
-                        throw new Error('Division by zero');
-                    }
-                    throw error;
-                }
-            }
-
-            addToHistory(expression, result) {
-                this.history.unshift({ expression, result });
-                if (this.history.length > 10) {
-                    this.history.pop();
-                }
-                this.updateHistoryDisplay();
-            }
-
-            updateHistoryDisplay() {
-                const historyDiv = document.getElementById('history');
-                if (this.history.length === 0) {
-                    historyDiv.innerHTML = '<div style="text-align: center; color: #999; padding: 20px;">Calculation history will appear here</div>';
-                    return;
-                }
-
-                historyDiv.innerHTML = this.history.map(item => `
-                    <div class="history-item">
-                        <span class="history-expression">${item.expression}</span>
-                        <span class="history-result">${item.result}</span>
-                    </div>
-                `).join('');
-            }
-        }
-
-        // Initialize calculator
-        const calculator = new WebCalculator();
-
-        // DOM functions
-        function appendToExpression(value) {
-            const input = document.getElementById('expressionInput');
-            input.value += value;
-            input.focus();
-        }
-
-        function clearExpression() {
-            document.getElementById('expressionInput').value = '';
-            document.getElementById('result').textContent = 'Ready to calculate...';
-            document.getElementById('result').className = 'result-value';
-        }
-
-        function calculate() {
-            const expression = document.getElementById('expressionInput').value;
-            const resultDiv = document.getElementById('result');
-            
-            try {
-                const result = calculator.calculate(expression);
-                resultDiv.textContent = result;
-                resultDiv.className = 'result-value';
-            } catch (error) {
-                resultDiv.textContent = `Error: ${error.message}`;
-                resultDiv.className = 'result-value error';
-            }
-        }
-
-        // Event listeners
-        document.getElementById('expressionInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                calculate();
+        // Add scroll effect to header
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.backgroundColor = 'transparent';
+                header.style.backdropFilter = 'none';
             }
         });
 
-        // Focus input on page load
-        window.addEventListener('load', function() {
-            document.getElementById('expressionInput').focus();
+        // Add hover effects to experience items
+        document.querySelectorAll('.experience-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.backgroundColor = 'rgba(255, 255, 255, 0.02)';
+                this.style.borderRadius = '8px';
+                this.style.padding = '20px';
+                this.style.margin = '0 -20px 30px -20px';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.backgroundColor = 'transparent';
+                this.style.borderRadius = '0';
+                this.style.padding = '0 0 20px 0';
+                this.style.margin = '0 0 30px 0';
+            });
         });
     </script>
 </body>
