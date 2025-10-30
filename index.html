@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atte Narhi - DX Consultant</title>
+    <title>Tekmob</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --dark-bg: #000000;
-            --text-primary: #ffffff;
-            --text-secondary: #cccccc;
-            --accent-blue: #4f9cf9;
-            --accent-orange: #ff8c00;
-            --border-light: #333333;
-            --hover-bg: #111111;
+            --primary-color: #0066FF;
+            --secondary-color: #00D4FF;
+            --text-dark: #1A1A1A;
+            --text-light: #666666;
+            --bg-light: #F5F7FA;
+            --bg-white: #FFFFFF;
+            --accent-orange: #FF6B35;
         }
 
         * {
@@ -25,576 +25,411 @@
         }
 
         body {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            background: var(--dark-bg);
-            color: var(--text-primary);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: var(--text-dark);
             line-height: 1.6;
-            min-height: 100vh;
+            overflow-x: hidden;
         }
 
         .container {
-            max-width: 1200px;
+            width: 100%;
+            max-width: 1280px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 24px;
         }
 
         /* Header */
-        .header {
+        header {
+            background: var(--bg-white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 30px 0;
-            border-bottom: 1px solid var(--border-light);
+            padding: 20px 0;
         }
 
-        .header h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 5px;
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .header .subtitle {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            font-weight: 500;
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
         }
 
-        .nav-link {
-            color: var(--text-primary);
+        .nav-links a {
             text-decoration: none;
-            font-size: 1.1rem;
+            color: var(--text-dark);
             font-weight: 500;
-            transition: color 0.3s ease;
+            transition: color 0.3s;
         }
 
-        .nav-link:hover {
-            color: var(--accent-blue);
+        .nav-links a:hover {
+            color: var(--primary-color);
         }
 
-        /* Main Layout */
-        .main-content {
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 120px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 64px;
+            font-weight: 800;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--bg-white);
+            color: var(--primary-color);
+            padding: 16px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 0;
+            background: var(--bg-white);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 60px;
+            color: var(--text-dark);
+        }
+
+        .features-grid {
             display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 60px;
-            padding: 60px 0;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
         }
 
-        /* Left Column - Summary & Contact */
-        .left-column {
-            padding-right: 20px;
+        .feature-card {
+            padding: 40px;
+            background: var(--bg-light);
+            border-radius: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        .summary {
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            font-size: 28px;
+        }
+
+        .feature-card h3 {
+            font-size: 24px;
+            margin-bottom: 16px;
+            color: var(--text-dark);
+        }
+
+        .feature-card p {
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        /* Stats Section */
+        .stats {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 80px 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-item h2 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .stat-item p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 0;
+            background: var(--bg-light);
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: var(--text-dark);
+        }
+
+        .cta-section p {
+            font-size: 20px;
+            color: var(--text-light);
             margin-bottom: 40px;
         }
 
-        .summary p {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            margin-bottom: 20px;
-        }
-
-        .contact-info {
-            background: var(--hover-bg);
-            padding: 30px;
-            border-radius: 12px;
-            border: 1px solid var(--border-light);
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-            font-size: 1rem;
-        }
-
-        .contact-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .contact-item a {
-            color: var(--text-primary);
+        .cta-button-primary {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 16px 40px;
+            border-radius: 50px;
             text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .contact-item a:hover {
-            color: var(--accent-blue);
-        }
-
-        .arrow-icon {
-            margin-left: 8px;
-            font-size: 0.9rem;
-            color: var(--accent-orange);
-        }
-
-        /* Right Column - Main Content */
-        .section {
-            margin-bottom: 50px;
-        }
-
-        .section h2 {
-            font-size: 1.8rem;
             font-weight: 600;
-            margin-bottom: 25px;
-            color: var(--text-primary);
+            display: inline-block;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        .experience-item {
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid var(--border-light);
-        }
-
-        .experience-item:last-child {
-            border-bottom: none;
-        }
-
-        .job-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 15px;
-        }
-
-        .job-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-
-        .company {
-            display: flex;
-            align-items: center;
-            font-weight: 500;
-            color: var(--accent-blue);
-        }
-
-        .company .arrow-icon {
-            margin-left: 5px;
-        }
-
-        .job-duration {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-        }
-
-        .job-description {
-            margin-bottom: 10px;
-        }
-
-        .job-description ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .job-description li {
-            margin-bottom: 8px;
-            color: var(--text-secondary);
-            position: relative;
-            padding-left: 20px;
-        }
-
-        .job-description li::before {
-            content: "•";
-            color: var(--accent-orange);
-            font-weight: bold;
-            position: absolute;
-            left: 0;
-        }
-
-        /* Skills Section */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-
-        .skill-category h3 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 15px;
-        }
-
-        .skill-category ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .skill-category li {
-            margin-bottom: 8px;
-            color: var(--text-secondary);
-            position: relative;
-            padding-left: 15px;
-        }
-
-        .skill-category li::before {
-            content: "•";
-            color: var(--accent-orange);
-            font-weight: bold;
-            position: absolute;
-            left: 0;
-        }
-
-        /* Education Section */
-        .education-item {
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid var(--border-light);
-        }
-
-        .education-item:last-child {
-            border-bottom: none;
-        }
-
-        .degree {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 5px;
-        }
-
-        .institution {
-            font-weight: 500;
-            color: var(--accent-blue);
-            margin-bottom: 5px;
-        }
-
-        .minor {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-        }
-
-        /* Recommendations Section */
-        .recommendation {
-            background: var(--hover-bg);
-            padding: 25px;
-            border-radius: 12px;
-            border: 1px solid var(--border-light);
-            margin-bottom: 20px;
-        }
-
-        .recommendation:last-child {
-            margin-bottom: 0;
-        }
-
-        .recommendation-text {
-            font-style: italic;
-            color: var(--text-secondary);
-            margin-bottom: 15px;
-            font-size: 1rem;
-        }
-
-        .recommendation-author {
-            font-size: 0.9rem;
-            color: var(--accent-blue);
-            font-weight: 500;
-        }
-
-        /* Certifications Section */
-        .certification {
-            background: var(--hover-bg);
-            padding: 20px;
-            border-radius: 12px;
-            border: 1px solid var(--border-light);
-        }
-
-        .certification-text {
-            color: var(--text-secondary);
-            margin-bottom: 10px;
-        }
-
-        .certification-date {
-            font-size: 0.9rem;
-            color: var(--accent-orange);
+        .cta-button-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
         }
 
         /* Footer */
-        .footer {
+        footer {
+            background: var(--text-dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+
+        .footer-section a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 12px;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
             text-align: center;
-            padding: 40px 0;
-            border-top: 1px solid var(--border-light);
-            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.5);
         }
 
-        .footer h3 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-
-        /* Responsive Design */
+        /* Responsive */
         @media (max-width: 768px) {
-            .main-content {
-                grid-template-columns: 1fr;
-                gap: 40px;
-                padding: 40px 0;
+            .hero h1 {
+                font-size: 42px;
             }
 
-            .header {
-                flex-direction: column;
-                align-items: flex-start;
+            .hero p {
+                font-size: 18px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
                 gap: 20px;
+                font-size: 14px;
             }
 
-            .header h1 {
-                font-size: 2rem;
-            }
-
-            .skills-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .job-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 10px;
-            }
-
-            .container {
-                padding: 0 15px;
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
         @media (max-width: 480px) {
-            .header h1 {
-                font-size: 1.8rem;
+            .hero {
+                padding: 80px 0;
             }
 
-            .header .subtitle {
-                font-size: 1rem;
+            .hero h1 {
+                font-size: 32px;
             }
 
-            .section h2 {
-                font-size: 1.5rem;
+            .container {
+                padding: 0 16px;
             }
 
-            .contact-info {
-                padding: 20px;
-            }
-
-            .recommendation,
-            .certification {
-                padding: 15px;
+            .nav-links {
+                display: none;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Header -->
-        <header class="header">
-            <div>
-                <h1>Atte Narhi</h1>
-                <div class="subtitle">DX Consultant</div>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo">Tekmob</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Transform Your Business with Tekmob</h1>
+            <p>Innovative technology solutions for the modern enterprise</p>
+            <a href="#contact" class="cta-button">Get Started</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="services">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Digital Transformation</h3>
+                    <p>Help your business embrace digital technologies and stay ahead of the competition with our comprehensive digital transformation services.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💡</div>
+                    <h3>Innovation Consulting</h3>
+                    <p>Drive innovation and growth with our expert consulting services designed to unlock your business potential.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔧</div>
+                    <h3>Technology Solutions</h3>
+                    <p>Custom technology solutions tailored to your business needs, helping you achieve operational excellence.</p>
+                </div>
             </div>
-            <nav>
-                <a href="#about" class="nav-link">About</a>
-            </nav>
-        </header>
+        </div>
+    </section>
 
-        <!-- Main Content -->
-        <main class="main-content">
-            <!-- Left Column -->
-            <aside class="left-column">
-                <section class="summary">
-                    <p>A creative electrical engineer with tech startup background. Passion for systematic organization development and cultural grow.</p>
-                    <p>Helping businessess in product development sales and digital transformation (DX)</p>
-                </section>
-
-                <section class="contact-info">
-                    <div class="contact-item">
-                        <a href="mailto:mcatsku@gmail.com">mcatsku@gmail.com</a>
-                        <span class="arrow-icon">→</span>
-                    </div>
-                    <div class="contact-item">
-                        <a href="tel:+358451084774">(+358) 45 108 4774</a>
-                    </div>
-                    <div class="contact-item">
-                        <a href="https://linkedin.com/in/attenarhi" target="_blank">LinkedIn</a>
-                        <span class="arrow-icon">→</span>
-                    </div>
-                </section>
-            </aside>
-
-            <!-- Right Column -->
-            <div class="right-column">
-                <!-- Experience Section -->
-                <section class="section">
-                    <h2>Experience</h2>
-                    
-                    <div class="experience-item">
-                        <div class="job-header">
-                            <div>
-                                <div class="job-title">Sales Development Representative (SDR)</div>
-                                <div class="company">Agora Legal Oy <span class="arrow-icon">→</span></div>
-                            </div>
-                            <div class="job-duration">October 2025 (ongoing)</div>
-                        </div>
-                        <div class="job-description">
-                            <ul>
-                                <li>Sales consulting with strict KPI requirements, prospecting, contacting and closing clients. Role also included developing information architecture and processes for resource management.</li>
-                                <li>Clients closed: flow-computing, wolt</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="experience-item">
-                        <div class="job-header">
-                            <div>
-                                <div class="job-title">Electrical Test Engineer</div>
-                                <div class="company">Cozify Oy <span class="arrow-icon">→</span></div>
-                            </div>
-                            <div class="job-duration">January 2022 - August 2025 (3 years, 8 months) - Former stake holder</div>
-                        </div>
-                        <div class="job-description">
-                            <ul>
-                                <li>Developed and deployed technology solutions. Resources included IoT gateway, backend, web and mobile user interface.</li>
-                                <li>End to end solutions selling. Collaborating with buyers. Interfacing with team, technological resources and customer needs, providing solutions and care.</li>
-                                <li>Developed a business strategy with the chairman of the board of directors by combining market research and customer insights.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Skills Section -->
-                <section class="section">
-                    <h2>Skills</h2>
-                    <div class="skills-grid">
-                        <div class="skill-category">
-                            <h3>General Skills</h3>
-                            <ul>
-                                <li>Sales</li>
-                                <li>Prospecting</li>
-                                <li>Cold Calling</li>
-                                <li>Pitching</li>
-                                <li>Support</li>
-                                <li>Customer Management</li>
-                            </ul>
-                        </div>
-                        <div class="skill-category">
-                            <h3>Communication & Collaboration</h3>
-                            <ul>
-                                <li>Confident public speaker</li>
-                                <li>Driving culture transformation</li>
-                                <li>Simplifying technical into simple</li>
-                            </ul>
-                        </div>
-                        <div class="skill-category">
-                            <h3>Product Development</h3>
-                            <ul>
-                                <li>Design</li>
-                                <li>Prototyping</li>
-                                <li>Testing</li>
-                                <li>Iterating</li>
-                            </ul>
-                        </div>
-                        <div class="skill-category">
-                            <h3>Business Development</h3>
-                            <ul>
-                                <li>Creative Strategy Development</li>
-                                <li>Model validation and testing</li>
-                                <li>Roadmap for execution</li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Education Section -->
-                <section class="section">
-                    <h2>Education</h2>
-                    
-                    <div class="education-item">
-                        <div class="institution">New Jersey City University, USA</div>
-                        <div class="degree">Business Information Systems, B.S. (Bachelor of science)</div>
-                    </div>
-
-                    <div class="education-item">
-                        <div class="institution">University of Applied Sciences NORDIC</div>
-                        <div class="degree">Master of Business Administration (MBA)</div>
-                        <div class="minor">Focus on: Digital transformation, RnD methods and leadership</div>
-                    </div>
-
-                    <div class="education-item">
-                        <div class="institution">University of Applied Sciences NORDIC</div>
-                        <div class="degree">Electrical engineering, B.E.</div>
-                        <div class="minor">Electronics engineer, major in power electronics. Expert in antenna technology, design and prototyping</div>
-                    </div>
-                </section>
-
-                <!-- Recommendations Section -->
-                <section class="section">
-                    <h2>Recommendations:</h2>
-                    
-                    <div class="recommendation">
-                        <div class="recommendation-text">
-                            "Great success"
-                        </div>
-                        <div class="recommendation-author">Borat</div>
-                    </div>
-                </section>
-
-                <!-- Certifications Section -->
-                <section class="section">
-                    <h2>Certifications:</h2>
-                    <div class="certification">
-                        <div class="certification-text">Flight licence</div>
-                    </div>
-                </section>
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h2>500+</h2>
+                    <p>Projects Delivered</p>
+                </div>
+                <div class="stat-item">
+                    <h2>200+</h2>
+                    <p>Happy Clients</p>
+                </div>
+                <div class="stat-item">
+                    <h2>15+</h2>
+                    <p>Years Experience</p>
+                </div>
+                <div class="stat-item">
+                    <h2>98%</h2>
+                    <p>Client Satisfaction</p>
+                </div>
             </div>
-        </main>
+        </div>
+    </section>
 
-        <!-- Footer -->
-        <footer class="footer" style="display: flex; justify-content: space-between; align-items: center; padding: 40px 0;">
-            <div style="font-size: 1.2rem; color: var(--text-secondary);">健信</div>
-            <div style="font-size: 2rem; color: var(--accent-blue);">Æ</div>
-        </footer>
-    </div>
+    <!-- CTA Section -->
+    <section class="cta-section" id="contact">
+        <div class="container">
+            <h2>Ready to Transform Your Business?</h2>
+            <p>Let's discuss how we can help you achieve your goals</p>
+            <a href="mailto:info@tekmob.com" class="cta-button-primary">Contact Us</a>
+        </div>
+    </section>
 
-    <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Add scroll effect to header
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('.header');
-            if (window.scrollY > 100) {
-                header.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
-                header.style.backdropFilter = 'blur(10px)';
-            } else {
-                header.style.backgroundColor = 'transparent';
-                header.style.backdropFilter = 'none';
-            }
-        });
-
-        // Add hover effects to experience items
-        document.querySelectorAll('.experience-item').forEach(item => {
-            item.addEventListener('mouseenter', function() {
-                this.style.backgroundColor = 'rgba(255, 255, 255, 0.02)';
-                this.style.borderRadius = '8px';
-                this.style.padding = '20px';
-                this.style.margin = '0 -20px 30px -20px';
-            });
-            
-            item.addEventListener('mouseleave', function() {
-                this.style.backgroundColor = 'transparent';
-                this.style.borderRadius = '0';
-                this.style.padding = '0 0 20px 0';
-                this.style.margin = '0 0 30px 0';
-            });
-        });
-    </script>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Tekmob</h3>
+                    <p>Innovative technology solutions for modern businesses. Transforming your digital future.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <a href="#services">Digital Transformation</a>
+                    <a href="#services">Innovation Consulting</a>
+                    <a href="#services">Technology Solutions</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <a href="#about">About Us</a>
+                    <a href="#contact">Contact</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <a href="mailto:info@tekmob.com">info@tekmob.com</a>
+                    <a href="tel:+358451084774">+358 45 108 4774</a>
+                    <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Tekmob. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
