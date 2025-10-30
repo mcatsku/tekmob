@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About - Atte Narhi</title>
+    <title>About - Tekmob</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --dark-bg: #000000;
-            --text-primary: #ffffff;
-            --text-secondary: #cccccc;
-            --accent-blue: #4f9cf9;
-            --accent-orange: #ff8c00;
-            --border-light: #333333;
-            --hover-bg: #111111;
+            --primary-color: #0066FF;
+            --secondary-color: #00D4FF;
+            --text-dark: #1A1A1A;
+            --text-light: #666666;
+            --bg-light: #F5F7FA;
+            --bg-white: #FFFFFF;
+            --accent-orange: #FF6B35;
         }
 
         * {
@@ -25,203 +25,246 @@
         }
 
         body {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            background: var(--dark-bg);
-            color: var(--text-primary);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: var(--text-dark);
             line-height: 1.6;
-            min-height: 100vh;
+            background: var(--bg-white);
         }
 
         .container {
-            max-width: 800px;
+            width: 100%;
+            max-width: 900px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 24px;
         }
 
-        .header {
+        header {
+            background: var(--bg-white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 30px 0;
-            border-bottom: 1px solid var(--border-light);
+            padding: 20px 0;
         }
 
-        .header h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .nav-link {
-            color: var(--text-primary);
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
             text-decoration: none;
-            font-size: 1.1rem;
+            color: var(--text-dark);
             font-weight: 500;
-            transition: color 0.3s ease;
-            margin-left: 20px;
+            transition: color 0.3s;
         }
 
-        .nav-link:hover {
-            color: var(--accent-blue);
-        }
-
-        .nav-link.active {
-            color: var(--accent-blue);
+        .nav-links a:hover {
+            color: var(--primary-color);
         }
 
         .main-content {
-            padding: 60px 0;
+            padding: 80px 0;
         }
 
-        .about-section {
-            margin-bottom: 50px;
+        .about-header {
+            text-align: center;
+            margin-bottom: 60px;
         }
 
-        .about-section h2 {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 25px;
-            color: var(--text-primary);
-        }
-
-        .about-section p {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
+        .about-header h1 {
+            font-size: 48px;
+            font-weight: 800;
             margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .about-header p {
+            font-size: 20px;
+            color: var(--text-light);
+        }
+
+        .content-section {
+            margin-bottom: 60px;
+        }
+
+        .content-section h2 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: var(--text-dark);
+        }
+
+        .content-section p {
+            font-size: 18px;
+            color: var(--text-light);
+            margin-bottom: 20px;
+            line-height: 1.8;
         }
 
         .highlight-box {
-            background: var(--hover-bg);
-            padding: 30px;
-            border-radius: 12px;
-            border: 1px solid var(--border-light);
-            margin: 30px 0;
+            background: var(--bg-light);
+            padding: 40px;
+            border-radius: 20px;
+            margin: 40px 0;
         }
 
         .highlight-box h3 {
-            color: var(--accent-blue);
-            font-size: 1.3rem;
-            margin-bottom: 15px;
+            font-size: 24px;
+            margin-bottom: 16px;
+            color: var(--primary-color);
+        }
+
+        .highlight-box p {
+            font-size: 18px;
+            color: var(--text-light);
         }
 
         .contact-cta {
             text-align: center;
             margin-top: 60px;
-            padding: 40px;
-            background: var(--hover-bg);
-            border-radius: 12px;
-            border: 1px solid var(--border-light);
+            padding: 60px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 20px;
         }
 
         .contact-cta h3 {
-            font-size: 1.5rem;
+            font-size: 36px;
+            color: white;
             margin-bottom: 20px;
         }
 
         .contact-cta p {
-            color: var(--text-secondary);
-            margin-bottom: 25px;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 30px;
+            font-size: 18px;
         }
 
         .btn {
             display: inline-block;
-            background: var(--accent-blue);
-            color: var(--text-primary);
-            padding: 12px 30px;
-            border-radius: 8px;
+            background: white;
+            color: var(--primary-color);
+            padding: 16px 40px;
+            border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s ease;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
         .btn:hover {
-            background: var(--accent-orange);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        footer {
+            background: var(--text-dark);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        footer p {
+            color: rgba(255,255,255,0.6);
         }
 
         @media (max-width: 768px) {
-            .header {
-                flex-direction: column;
-                align-items: flex-start;
+            .about-header h1 {
+                font-size: 36px;
+            }
+
+            .content-section h2 {
+                font-size: 28px;
+            }
+
+            .nav-links {
                 gap: 20px;
-            }
-
-            .header h1 {
-                font-size: 2rem;
-            }
-
-            .nav-link {
-                margin-left: 0;
-                margin-right: 20px;
+                font-size: 14px;
             }
 
             .container {
-                padding: 0 15px;
+                padding: 0 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-links {
+                display: none;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Header -->
-        <header class="header">
-            <h1>About Atte</h1>
-            <nav>
-                <a href="index.html" class="nav-link">Home</a>
-                <a href="about.html" class="nav-link active">About</a>
-            </nav>
-        </header>
+    <header>
+        <nav class="container">
+            <div class="logo">Tekmob</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-        <!-- Main Content -->
-        <main class="main-content">
-            <section class="about-section">
-                <h2>My Story</h2>
-                <p>As a creative electrical engineer with a strong tech startup background, I've dedicated my career to helping businesses navigate the complex world of digital transformation. My journey has taken me from hands-on product development to strategic business consulting, always with a focus on bridging the gap between technology and business value.</p>
-                
-                <p>I believe that successful digital transformation isn't just about implementing new technologies—it's about understanding people, processes, and culture. My approach combines technical expertise with business acumen to deliver solutions that truly drive growth and innovation.</p>
-            </section>
-
-            <div class="highlight-box">
-                <h3>My Mission</h3>
-                <p>To help businesses unlock their digital potential through strategic guidance, systematic organization development, and cultural transformation. I'm passionate about making technology accessible and ensuring that digital initiatives deliver real, measurable value.</p>
+    <main class="main-content">
+        <div class="container">
+            <div class="about-header">
+                <h1>About Tekmob</h1>
+                <p>Innovative technology solutions for the modern enterprise</p>
             </div>
 
-            <section class="about-section">
-                <h2>What I Do</h2>
-                <p>As a DX Consultant, I work with businesses to:</p>
-                <ul style="margin: 20px 0; padding-left: 20px; color: var(--text-secondary);">
-                    <li>Develop comprehensive digital transformation strategies</li>
-                    <li>Optimize business processes and workflows</li>
-                    <li>Bridge the gap between technical teams and business stakeholders</li>
-                    <li>Drive cultural change that supports digital initiatives</li>
-                    <li>Deliver end-to-end solutions that meet both technical and business requirements</li>
-                </ul>
-            </section>
+            <div class="content-section">
+                <h2>Our Story</h2>
+                <p>Tekmob is a forward-thinking technology company specializing in digital transformation and innovative business solutions. We help organizations navigate the complexities of the digital age and achieve their strategic goals.</p>
+                <p>With years of experience in technology consulting and solution development, we've built a reputation for delivering results that matter. Our team combines technical expertise with business acumen to create solutions that drive real value.</p>
+            </div>
 
-            <section class="about-section">
-                <h2>Why Work With Me?</h2>
-                <p>My unique combination of technical engineering background and business development experience allows me to understand both the technical possibilities and business realities of digital transformation. I've successfully helped companies like Flow Computing and Wolt navigate their digital journeys, and I'm passionate about helping more businesses achieve their digital goals.</p>
-            </section>
+            <div class="highlight-box">
+                <h3>Our Mission</h3>
+                <p>To empower businesses with innovative technology solutions that drive growth, efficiency, and competitive advantage. We believe in building lasting partnerships with our clients and helping them succeed in an ever-evolving digital landscape.</p>
+            </div>
+
+            <div class="content-section">
+                <h2>What We Do</h2>
+                <p>Tekmob offers comprehensive technology services designed to transform your business:</p>
+                <p><strong>Digital Transformation:</strong> We help businesses leverage digital technologies to streamline operations, improve customer experiences, and create new opportunities for growth.</p>
+                <p><strong>Innovation Consulting:</strong> Our consultants work closely with organizations to identify opportunities, develop strategies, and implement innovative solutions that deliver measurable results.</p>
+                <p><strong>Technology Solutions:</strong> From custom software development to cloud infrastructure, we provide end-to-end technology solutions tailored to your specific needs.</p>
+            </div>
+
+            <div class="content-section">
+                <h2>Why Work With Us?</h2>
+                <p>Our combination of technical expertise, industry knowledge, and commitment to excellence makes us the ideal partner for your digital transformation journey. We've successfully helped hundreds of businesses across various industries achieve their technology goals.</p>
+            </div>
 
             <div class="contact-cta">
                 <h3>Ready to Transform Your Business?</h3>
-                <p>Let's discuss how I can help you achieve your digital transformation goals.</p>
+                <p>Let's discuss how we can help you achieve your digital transformation goals.</p>
                 <a href="index.html#contact" class="btn">Get In Touch</a>
             </div>
-        </main>
-    </div>
+        </div>
+    </main>
 
-    <script>
-        // Add scroll effect to header
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('.header');
-            if (window.scrollY > 100) {
-                header.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
-                header.style.backdropFilter = 'blur(10px)';
-            } else {
-                header.style.backgroundColor = 'transparent';
-                header.style.backdropFilter = 'none';
-            }
-        });
-    </script>
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Tekmob. All rights reserved.</p>
+        </div>
+    </footer>
 </body>
 </html>
