@@ -11,10 +11,10 @@
         :root {
             --primary-color: #0066FF;
             --secondary-color: #00D4FF;
-            --text-dark: #1A1A1A;
+            --text-dark: #000000;
             --text-light: #666666;
-            --bg-light: #F5F7FA;
-            --bg-white: #FFFFFF;
+            --bg-light: #1A1A1A;
+            --bg-white: #000000;
             --accent-orange: #FF6B35;
         }
 
@@ -26,9 +26,10 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            color: var(--text-dark);
+            color: white;
             line-height: 1.6;
             overflow-x: hidden;
+            background: var(--bg-white);
         }
 
         .container {
@@ -41,7 +42,7 @@
         /* Header */
         header {
             background: var(--bg-white);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
             position: sticky;
             top: 0;
             z-index: 100;
@@ -71,7 +72,7 @@
 
         .nav-links a {
             text-decoration: none;
-            color: var(--text-dark);
+            color: white;
             font-weight: 500;
             transition: color 0.3s;
         }
@@ -128,7 +129,7 @@
             font-size: 42px;
             font-weight: 700;
             margin-bottom: 60px;
-            color: var(--text-dark);
+            color: white;
         }
 
         .features-grid {
@@ -142,6 +143,7 @@
             background: var(--bg-light);
             border-radius: 20px;
             transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #333;
         }
 
         .feature-card:hover {
@@ -164,7 +166,7 @@
         .feature-card h3 {
             font-size: 24px;
             margin-bottom: 16px;
-            color: var(--text-dark);
+            color: white;
         }
 
         .feature-card p {
@@ -200,7 +202,7 @@
         /* CTA Section */
         .cta-section {
             padding: 100px 0;
-            background: var(--bg-light);
+            background: var(--bg-white);
             text-align: center;
         }
 
@@ -208,7 +210,7 @@
             font-size: 42px;
             font-weight: 700;
             margin-bottom: 24px;
-            color: var(--text-dark);
+            color: white;
         }
 
         .cta-section p {
@@ -374,16 +376,12 @@
                     <p>Projects Delivered</p>
                 </div>
                 <div class="stat-item">
-                    <h2>200+</h2>
-                    <p>Happy Clients</p>
-                </div>
-                <div class="stat-item">
                     <h2>15+</h2>
                     <p>Years Experience</p>
                 </div>
                 <div class="stat-item">
                     <h2>98%</h2>
-                    <p>Client Satisfaction</p>
+                    <p>Success Rate</p>
                 </div>
             </div>
         </div>
