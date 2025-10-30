@@ -69,7 +69,7 @@
 
         .nav-links {
             display: flex;
-            gap: 32px;
+            gap: 24px;
             list-style: none;
         }
 
@@ -86,9 +86,13 @@
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            /* Vercel-like subtle glow on black */
+            background:
+                radial-gradient(1200px 600px at 50% -200px, rgba(255,0,0,0.18) 0%, rgba(0,0,0,0) 60%),
+                radial-gradient(900px 500px at 80% 20%, rgba(0,102,255,0.16) 0%, rgba(0,0,0,0) 60%),
+                var(--bg-white);
             color: white;
-            padding: 120px 0;
+            padding: 140px 0 120px;
             text-align: center;
         }
 
@@ -175,31 +179,6 @@
         .feature-card p {
             color: var(--text-light);
             line-height: 1.8;
-        }
-
-        /* Stats Section */
-        .stats {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            padding: 80px 0;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            text-align: center;
-        }
-
-        .stat-item h2 {
-            font-size: 48px;
-            font-weight: 800;
-            margin-bottom: 8px;
-        }
-
-        .stat-item p {
-            font-size: 18px;
-            opacity: 0.9;
         }
 
         /* CTA Section */
@@ -298,10 +277,6 @@
                 gap: 20px;
                 font-size: 14px;
             }
-
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
         }
 
         @media (max-width: 480px) {
@@ -329,9 +304,10 @@
         <nav class="container">
             <div class="logo">Tekmob</div>
             <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#about">About</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#solutions">Solutions</a></li>
+                <li><a href="#resources">Resources</a></li>
+                <li><a href="#pricing">Pricing</a></li>
             </ul>
         </nav>
     </header>
@@ -339,31 +315,36 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="container">
-            <h1>Transform Your Business with Tekmob</h1>
-            <p>Innovative technology solutions for the modern enterprise</p>
-            <a href="#conspire" class="cta-button">Get Started</a>
+            <h1>Build and deploy with Tekmob</h1>
+            <p>Security, speed, and AI included — so you can focus on your user.</p>
+            <a href="#conspire" class="cta-button">Conspire</a>
         </div>
     </section>
 
     <!-- Features Section -->
     <section class="features" id="services">
         <div class="container">
-            <h2 class="section-title">Our Services</h2>
+            <h2 class="section-title" id="solutions">Solutions</h2>
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon">🚀</div>
-                    <h3>Digital Transformation</h3>
-                    <p>Help your business embrace digital technologies and stay ahead of the competition with our comprehensive digital transformation services.</p>
+                    <div class="feature-icon">🤖</div>
+                    <h3>AI Apps</h3>
+                    <p>Deploy AI-powered features quickly with streamlined infrastructure and observability.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">💡</div>
-                    <h3>Innovation Consulting</h3>
-                    <p>Drive innovation and growth with our expert consulting services designed to unlock your business potential.</p>
+                    <div class="feature-icon">🧩</div>
+                    <h3>Web Apps</h3>
+                    <p>Ship beautiful interfaces that don’t compromise speed or reliability.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🔧</div>
-                    <h3>Technology Solutions</h3>
-                    <p>Custom technology solutions tailored to your business needs, helping you achieve operational excellence.</p>
+                    <div class="feature-icon">🛒</div>
+                    <h3>Composable Commerce</h3>
+                    <p>Power fast, branded storefronts that convert across markets and devices.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏗️</div>
+                    <h3>Platforms</h3>
+                    <p>Scale multi-tenant products securely with isolation and zero-downtime previews.</p>
                 </div>
             </div>
         </div>
