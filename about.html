@@ -10,11 +10,11 @@
     <style>
         :root {
             --primary-color: #0066FF;
-            --secondary-color: #00D4FF;
-            --text-dark: #1A1A1A;
+            --secondary-color: #FF0000;
+            --text-dark: #000000;
             --text-light: #666666;
-            --bg-light: #F5F7FA;
-            --bg-white: #FFFFFF;
+            --bg-light: #1A1A1A;
+            --bg-white: #000000;
             --accent-orange: #FF6B35;
         }
 
@@ -26,7 +26,7 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            color: var(--text-dark);
+            color: white;
             line-height: 1.6;
             background: var(--bg-white);
         }
@@ -54,12 +54,15 @@
         }
 
         .logo {
-            font-size: 28px;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            font-size: 32px;
+            font-weight: 900;
+            letter-spacing: -1px;
+            font-family: sans-serif;
+            background: linear-gradient(90deg, #FF0000 0%, #CC0000 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            text-transform: uppercase;
         }
 
         .nav-links {
@@ -70,7 +73,7 @@
 
         .nav-links a {
             text-decoration: none;
-            color: var(--text-dark);
+            color: white;
             font-weight: 500;
             transition: color 0.3s;
         }
@@ -92,7 +95,7 @@
             font-size: 48px;
             font-weight: 800;
             margin-bottom: 20px;
-            color: var(--text-dark);
+            color: white;
         }
 
         .about-header p {
@@ -108,7 +111,7 @@
             font-size: 32px;
             font-weight: 700;
             margin-bottom: 24px;
-            color: var(--text-dark);
+            color: white;
         }
 
         .content-section p {
@@ -116,6 +119,65 @@
             color: var(--text-light);
             margin-bottom: 20px;
             line-height: 1.8;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .skill-category {
+            background: var(--bg-light);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #333;
+        }
+
+        .skill-category h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+
+        .skill-category ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .skill-category li {
+            color: var(--text-light);
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .skill-category li::before {
+            content: "•";
+            color: var(--secondary-color);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .education-item {
+            background: var(--bg-light);
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #333;
+        }
+
+        .education-item h4 {
+            font-size: 20px;
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        .education-item p {
+            margin-bottom: 5px;
         }
 
         .highlight-box {
@@ -215,9 +277,9 @@
             <div class="logo">Tekmob</div>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="index.html#services">Services</a></li>
+                <li><a href="index.html#solutions">Solutions</a></li>
+                <li><a href="index.html#conspire">Conspire</a></li>
                 <li><a href="about.html">About</a></li>
-                <li><a href="index.html#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
@@ -253,10 +315,70 @@
                 <p>Our combination of technical expertise, industry knowledge, and commitment to excellence makes us the ideal partner for your digital transformation journey. We've successfully helped hundreds of businesses across various industries achieve their technology goals.</p>
             </div>
 
+            <div class="content-section">
+                <h2>Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>General Skills</h3>
+                        <ul>
+                            <li>Sales</li>
+                            <li>Prospecting</li>
+                            <li>Cold Calling</li>
+                            <li>Pitching</li>
+                            <li>Support</li>
+                            <li>Customer Management</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Communication & Collaboration</h3>
+                        <ul>
+                            <li>Confident public speaker</li>
+                            <li>Driving culture transformation</li>
+                            <li>Simplifying technical into simple</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Product Development</h3>
+                        <ul>
+                            <li>Design</li>
+                            <li>Prototyping</li>
+                            <li>Testing</li>
+                            <li>Iterating</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Business Development</h3>
+                        <ul>
+                            <li>Creative Strategy Development</li>
+                            <li>Model validation and testing</li>
+                            <li>Roadmap for execution</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>Education</h2>
+                <div class="education-item">
+                    <h4>Business Information Systems, B.S. (Bachelor of Science)</h4>
+                    <p><strong>New Jersey City University, USA</strong></p>
+                </div>
+                <div class="education-item">
+                    <h4>Master of Business Administration (MBA)</h4>
+                    <p><strong>University of Applied Sciences NORDIC</strong></p>
+                    <p>Focus on: Digital transformation, RnD methods and leadership</p>
+                </div>
+                <div class="education-item">
+                    <h4>Electrical Engineering, B.E.</h4>
+                    <p><strong>University of Applied Sciences NORDIC</strong></p>
+                    <p>Electronics engineer, major in power electronics. Expert in antenna technology, design and prototyping</p>
+                </div>
+            </div>
+
             <div class="contact-cta">
                 <h3>Ready to Transform Your Business?</h3>
                 <p>Let's discuss how we can help you achieve your digital transformation goals.</p>
-                <a href="index.html#contact" class="btn">Get In Touch</a>
+                <a href="index.html#conspire" class="btn">Conspire</a>
             </div>
         </div>
     </main>
