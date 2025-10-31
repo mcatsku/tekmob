@@ -56,12 +56,22 @@
         }
 
         .logo {
-            font-size: 32px;
-            font-weight: 900;
-            letter-spacing: -1px;
-            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-name {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
             color: white;
-            text-transform: uppercase;
+        }
+
+        .logo-subtitle {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--primary-color);
+            margin-top: -4px;
         }
 
         .nav-links {
@@ -301,7 +311,10 @@
     <!-- Header -->
     <header>
         <nav class="container">
-            <div class="logo">Tekmob</div>
+            <div class="logo">
+                <span class="logo-name">Atte Narhi</span>
+                <span class="logo-subtitle">DX Consultant</span>
+            </div>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="#solutions">Solutions</a></li>
