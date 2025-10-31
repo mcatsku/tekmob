@@ -40,7 +40,7 @@
 
         header {
             background: var(--bg-white);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
             position: sticky;
             top: 0;
             z-index: 100;
@@ -51,6 +51,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px 0;
+            position: relative;
         }
 
         .logo {
@@ -86,6 +87,20 @@
         }
 
         .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .mobile-menu-toggle:hover {
             color: var(--primary-color);
         }
 
@@ -295,8 +310,29 @@
         }
 
         @media (max-width: 480px) {
+            .mobile-menu-toggle {
+                display: block;
+            }
+
             .nav-links {
                 display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--bg-white);
+                flex-direction: column;
+                padding: 20px;
+                gap: 15px;
+                border-top: 1px solid #333;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                font-size: 16px;
             }
         }
     </style>
@@ -308,11 +344,12 @@
                 <span class="logo-name">Atte Narhi</span>
                 <span class="logo-subtitle">DX Consultant</span>
             </div>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="index.html#solutions">Solutions</a></li>
-                <li><a href="index.html#conspire">Conspire</a></li>
-                <li><a href="about.html">About</a></li>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html" onclick="closeMobileMenu()">Home</a></li>
+                <li><a href="index.html#solutions" onclick="closeMobileMenu()">Solutions</a></li>
+                <li><a href="index.html#conspire" onclick="closeMobileMenu()">Conspire</a></li>
+                <li><a href="about.html" onclick="closeMobileMenu()">About</a></li>
             </ul>
         </nav>
     </header>
@@ -359,5 +396,17 @@
             <p>&copy; 2025 Tekmob Oy All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        function closeMobileMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.remove('active');
+        }
+    </script>
 </body>
 </html>
