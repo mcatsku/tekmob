@@ -95,8 +95,8 @@
         .hero {
             /* Vercel-like subtle glow on black */
             background:
-                radial-gradient(1200px 600px at 50% -200px, rgba(255,0,0,0.18) 0%, rgba(0,0,0,0) 60%),
-                radial-gradient(900px 500px at 80% 20%, rgba(0,102,255,0.16) 0%, rgba(0,0,0,0) 60%),
+                radial-gradient(1200px 600px at 50% -200px, rgba(0,102,255,0.35) 0%, rgba(0,0,0,0) 60%),
+                radial-gradient(900px 500px at 80% 20%, rgba(255,107,53,0.25) 0%, rgba(0,0,0,0) 60%),
                 var(--bg-white);
             color: white;
             padding: 140px 0 120px;
@@ -118,10 +118,10 @@
 
         .cta-button {
             display: inline-block;
-            background: transparent;
+            background: var(--primary-color);
             color: white;
             padding: 16px 40px;
-            border: 1px solid white;
+            border: none;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
@@ -130,7 +130,7 @@
 
         .cta-button:hover {
             transform: translateY(-3px);
-            background: rgba(255,255,255,0.1);
+            background: #0052CC;
         }
 
         /* Features Section */
@@ -210,10 +210,10 @@
         }
 
         .cta-button-primary {
-            background: transparent;
+            background: var(--primary-color);
             color: white;
             padding: 16px 40px;
-            border: 1px solid white;
+            border: none;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
@@ -223,7 +223,7 @@
 
         .cta-button-primary:hover {
             transform: translateY(-3px);
-            background: rgba(255,255,255,0.1);
+            background: #0052CC;
         }
 
         /* Footer */
