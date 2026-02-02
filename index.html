@@ -196,32 +196,12 @@
         .feature-card h3 {
             font-size: 24px;
             margin-bottom: 16px;
-            color: white;
+            color: var(--primary-color);
         }
 
         .feature-card p {
             color: var(--text-light);
             line-height: 1.8;
-        }
-
-        .services-links {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 24px 48px;
-            list-style: none;
-        }
-
-        .services-links a {
-            color: var(--primary-color);
-            text-decoration: none;
-            font-size: 18px;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .services-links a:hover {
-            color: white;
         }
 
         /* CTA Section */
@@ -317,11 +297,6 @@
                 grid-template-columns: 1fr;
             }
 
-            .services-links {
-                flex-direction: column;
-                gap: 16px;
-            }
-
             .nav-links {
                 gap: 20px;
                 font-size: 14px;
@@ -397,11 +372,32 @@
     <section class="features" id="services">
         <div class="container">
             <h2 class="section-title" id="solutions">Services</h2>
-            <nav class="services-links">
-                <a href="mailto:info@tekmob.fi?subject=Digital%20Transformation">Digital Transformation (DX)</a>
-                <a href="mailto:info@tekmob.fi?subject=Sales%20Development%20(SDR)">Sales Development Representative (SDR)</a>
-                <a href="mailto:info@tekmob.fi?subject=Product%20Development">Product Development</a>
-            </nav>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>Digital Transformation (DX)</h3>
+                    <p>Help your business to become a learning organization which embraces the technological transformation and the usage of artificial intelligence (AI). Providing the tools and skills for sustainable cultural transformation to boost innovation and efficiency.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Sales Development Representative (SDR)</h3>
+                    <p>Drive your pipeline and validate market fit with dedicated SDRs at the customer frontline, define your Ideal Customer Profile (ICP), uncover customer insights, book monthly meetings to fuel growth, and test core business assumptions.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Product Development</h3>
+                    <p>Boost product development with a dedicated electrical engineer focused on developing, prototyping, and iterating products. Prioritize documentation, customer context, and use-case testing. Experience with both software and hardware development.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Security Expert</h3>
+                    <p>Information systems (IT) security and risk analysis. Evaluation of the business-critical infrastructure and work behaviors of the people. Giving technical recommendations and facilitating internal workshops to educate employees on policies.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Consultant</h3>
+                    <p>Solve business problems by finding the root causes, through data gathering, analyzing, making recommendations and facilitating execution.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Project Manager</h3>
+                    <p>Take responsibility for facilitating teams to drive collaboration for a common goal. Acting as a translator between the business and the engineering teams, driving team spirit and communication.</p>
+                </div>
+            </div>
         </div>
     </section>
 
