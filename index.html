@@ -204,6 +204,26 @@
             line-height: 1.8;
         }
 
+        .services-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 24px 48px;
+            list-style: none;
+        }
+
+        .services-links a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .services-links a:hover {
+            color: white;
+        }
+
         /* CTA Section */
         .cta-section {
             padding: 100px 0;
@@ -297,6 +317,11 @@
                 grid-template-columns: 1fr;
             }
 
+            .services-links {
+                flex-direction: column;
+                gap: 16px;
+            }
+
             .nav-links {
                 gap: 20px;
                 font-size: 14px;
@@ -355,7 +380,7 @@
             <ul class="nav-links" id="navLinks">
                 <li><a href="index.html" onclick="closeMobileMenu()">Home</a></li>
                 <li><a href="#solutions" onclick="closeMobileMenu()">Solutions</a></li>
-                <li><a href="#conspire" onclick="closeMobileMenu()">Conspire</a></li>
+                <li><a href="#contact" onclick="closeMobileMenu()">Contact</a></li>
                 <li><a href="about.html" onclick="closeMobileMenu()">About</a></li>
             </ul>
         </nav>
@@ -368,24 +393,15 @@
         </div>
     </section>
 
-    <!-- Features Section -->
+    <!-- Services Section -->
     <section class="features" id="services">
         <div class="container">
-            <h2 class="section-title" id="solutions">Consulting Services</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <h3>Digital Transformation (DX)</h3>
-                    <p>Help your business to become a learning organization which embraces the technological transformation and the usage of artificial intelligence (AI). Providing the tools and skills for sustainable cultural transformation to boost innovation and efficiency.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Sales Development Representative (SDR)</h3>
-                    <p>Drive your pipeline and validate market fit with dedicated SDRs at the customer frontline, define your Ideal Customer Profile (ICP), uncover customer insights, book monthly meetings to fuel growth, and test core business assumptions.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Product Development</h3>
-                    <p>Boost product development with a dedicated electrical engineer focused on developing, prototyping, and iterating products. Prioritize documentation, customer context, and use-case testing. Experience with both software and hardware development.</p>
-                </div>
-            </div>
+            <h2 class="section-title" id="solutions">Services</h2>
+            <nav class="services-links">
+                <a href="mailto:info@tekmob.fi?subject=Digital%20Transformation">Digital Transformation (DX)</a>
+                <a href="mailto:info@tekmob.fi?subject=Sales%20Development%20(SDR)">Sales Development Representative (SDR)</a>
+                <a href="mailto:info@tekmob.fi?subject=Product%20Development">Product Development</a>
+            </nav>
         </div>
     </section>
 
@@ -394,17 +410,17 @@
         <div class="container">
             <h2 class="section-title">Insight</h2>
             <div style="max-width: 800px; margin: 0 auto;">
-                <p style="font-size: 18px; color: var(--text-light); line-height: 1.8;">Old conversations lead to old actions. A consultant must set example, by shifting the ownership of the room. Particular event are as a sample and leading indicator for all future meetings.</p>
+                <p style="font-size: 18px; color: var(--text-light); line-height: 1.8;">Old conversations lead to old actions. A consultant must set an example, by shifting the ownership of the room. Particular events are a sample and leading indicator for all future meetings.</p>
             </div>
         </div>
     </section>
 
     <!-- CTA Section -->
-    <section class="cta-section" id="conspire">
+    <section class="cta-section" id="contact">
         <div class="container">
             <h2>Ready to Transform Your Business?</h2>
             <p>Let's discuss how we can help you achieve your goals</p>
-            <a href="mailto:info@tekmob.fi" class="cta-button-primary">Conspire</a>
+            <a href="mailto:info@tekmob.fi" class="cta-button-primary">Contact</a>
         </div>
     </section>
 
@@ -412,7 +428,8 @@
     <footer>
         <div class="container">
             <div class="footer-bottom">
-                <p>&copy; 2025 Tekmob Oy All rights reserved.</p>
+                <p>&copy; 2025 Tekmob Oy 3570087-5. All rights reserved.</p>
+                <p><a href="mailto:info@tekmob.fi" style="color: rgba(255,255,255,0.7); text-decoration: none;">Contact</a></p>
             </div>
         </div>
     </footer>
