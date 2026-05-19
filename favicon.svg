@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs>
+    <style type="text/css">
+      @import url("https://fonts.googleapis.com/css2?family=Rock+Salt&amp;display=swap");
+      .mark { font-family: "Rock Salt", cursive; font-size: 7.5px; fill: #FFFFFF; }
+    </style>
+  </defs>
+  <circle cx="16" cy="16" r="14" fill="none" stroke="#0C8DE8" stroke-width="2"/>
+  <text class="mark" x="16" y="18" text-anchor="middle">TEK</text>
+</svg>

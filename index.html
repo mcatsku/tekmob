@@ -1,444 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tekmob</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary-color: #0066FF;
-            --secondary-color: #0066FF;
-            --text-dark: #000000;
-            --text-light: #666666;
-            --bg-light: #1A1A1A;
-            --bg-white: #000000;
-            --accent-orange: #FF6B35;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            color: white;
-            line-height: 1.6;
-            overflow-x: hidden;
-            background: var(--bg-white);
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        /* Header */
-        header {
-            background: var(--bg-white);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-            position: relative;
-        }
-
-        .logo {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .logo-name {
-            font-size: 28px;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-            color: white;
-        }
-
-        .logo-subtitle {
-            font-size: 14px;
-            font-weight: 500;
-            color: var(--primary-color);
-            margin-top: -4px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 24px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: white;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-color);
-        }
-
-        .mobile-menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 28px;
-            cursor: pointer;
-            padding: 5px;
-        }
-
-        .mobile-menu-toggle:hover {
-            color: var(--primary-color);
-        }
-
-        /* Hero Section */
-        .hero {
-            /* Vercel-like subtle glow on black */
-            background:
-                radial-gradient(1200px 600px at 50% -200px, rgba(0,102,255,0.35) 0%, rgba(0,0,0,0) 60%),
-                radial-gradient(900px 500px at 80% 20%, rgba(255,107,53,0.25) 0%, rgba(0,0,0,0) 60%),
-                var(--bg-white);
-            color: white;
-            padding: 140px 0 120px;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 64px;
-            font-weight: 800;
-            margin-bottom: 24px;
-            line-height: 1.2;
-        }
-
-        .hero p {
-            font-size: 20px;
-            margin-bottom: 40px;
-            opacity: 0.9;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: var(--primary-color);
-            color: white;
-            padding: 16px 40px;
-            border: none;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: transform 0.3s, background 0.3s;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            background: #0052CC;
-        }
-
-        /* Features Section */
-        .features {
-            padding: 100px 0;
-            background: var(--bg-white);
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 42px;
-            font-weight: 700;
-            margin-bottom: 60px;
-            color: white;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-        }
-
-        .feature-card {
-            padding: 40px;
-            background: var(--bg-light);
-            border-radius: 20px;
-            transition: transform 0.3s, box-shadow 0.3s;
-            border: 1px solid #333;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-        }
-
-        .feature-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 24px;
-            font-size: 28px;
-        }
-
-        .feature-card h3 {
-            font-size: 24px;
-            margin-bottom: 16px;
-            color: var(--primary-color);
-        }
-
-        .feature-card p {
-            color: var(--text-light);
-            line-height: 1.8;
-        }
-
-        /* CTA Section */
-        .cta-section {
-            padding: 100px 0;
-            background: var(--bg-white);
-            text-align: center;
-        }
-
-        .cta-section h2 {
-            font-size: 42px;
-            font-weight: 700;
-            margin-bottom: 24px;
-            color: white;
-        }
-
-        .cta-section p {
-            font-size: 20px;
-            color: var(--text-light);
-            margin-bottom: 40px;
-        }
-
-        .cta-button-primary {
-            background: var(--primary-color);
-            color: white;
-            padding: 16px 40px;
-            border: none;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-block;
-            transition: transform 0.3s, background 0.3s;
-        }
-
-        .cta-button-primary:hover {
-            transform: translateY(-3px);
-            background: #0052CC;
-        }
-
-        /* Footer */
-        footer {
-            background: var(--text-dark);
-            color: white;
-            padding: 60px 0 30px;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .footer-section h3 {
-            margin-bottom: 20px;
-            font-size: 20px;
-        }
-
-        .footer-section a {
-            color: rgba(255,255,255,0.7);
-            text-decoration: none;
-            display: block;
-            margin-bottom: 12px;
-            transition: color 0.3s;
-        }
-
-        .footer-section a:hover {
-            color: white;
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            color: rgba(255,255,255,0.5);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 42px;
-            }
-
-            .hero p {
-                font-size: 18px;
-            }
-
-            .section-title {
-                font-size: 32px;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .nav-links {
-                gap: 20px;
-                font-size: 14px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero {
-                padding: 60px 0;
-            }
-
-            .hero h1 {
-                font-size: 28px;
-            }
-
-            .container {
-                padding: 0 16px;
-            }
-
-            .mobile-menu-toggle {
-                display: block;
-            }
-
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: var(--bg-white);
-                flex-direction: column;
-                padding: 20px;
-                gap: 15px;
-                border-top: 1px solid #333;
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .nav-links a {
-                font-size: 16px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tekmob</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <nav class="container">
-            <div class="logo">
-                <span class="logo-name">Atte Narhi</span>
-                <span class="logo-subtitle">Sales Consultant</span>
-            </div>
-            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="index.html" onclick="closeMobileMenu()">Home</a></li>
-                <li><a href="#solutions" onclick="closeMobileMenu()">Solutions</a></li>
-                <li><a href="#contact" onclick="closeMobileMenu()">Contact</a></li>
-                <li><a href="about.html" onclick="closeMobileMenu()">About</a></li>
-            </ul>
-        </nav>
-    </header>
+  <header class="site-header">
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+      <a href="#" class="logo" aria-label="TekMob home">
+        <span class="logo-text">TekMob</span>
+      </a>
+      <ul class="nav-tabs" role="tablist">
+        <li><button id="tab-home" class="tab-btn active" data-tab="home" aria-selected="true" role="tab">Home</button></li>
+        <li><button id="tab-about" class="tab-btn" data-tab="about" aria-selected="false" role="tab">About</button></li>
+        <li><button id="tab-contact" class="tab-btn" data-tab="contact" aria-selected="false" role="tab">Contact</button></li>
+      </ul>
+    </nav>
+  </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container">
-            <h1>Transforming the next generation businesses</h1>
+  <main class="main-content">
+    <!-- Home: hero pane + services pane (scroll threshold between) -->
+    <section id="home" class="tab-panel tab-panel--home active" role="tabpanel" aria-labelledby="tab-home">
+      <div class="home-viewport" id="home-viewport">
+        <div class="home-track" id="home-track">
+          <div class="home-pane home-pane--hero" id="home-pane-hero">
+            <div class="landing-ambient landing-ambient--hero" aria-hidden="true"></div>
+            <div class="hero-inner" id="home-hero-inner">
+              <h1 class="tagline">Transforming next generation businesses</h1>
+              <div class="hero-actions">
+                <a href="https://calendar.proton.me/bookings#CppxBV-J1fGW0lrfEm2di80X8o7z9setK14ssYY563Q=" class="contact-link contact-link--accent" target="_blank" rel="noopener noreferrer">
+                  Meet with Atte
+                  <span class="link-arrow" aria-hidden="true">↗</span>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="home-pane home-pane--services" id="home-pane-services">
+            <div class="landing-ambient landing-ambient--services" aria-hidden="true"></div>
+            <div class="home-services-scroll" id="home-services-scroll">
+              <div class="services">
+                <h2 class="section-heading">What I Offer</h2>
+                <div class="services-grid">
+                  <article class="service-card">
+                    <h3 class="service-title">Product &amp; Engineering</h3>
+                    <p class="service-desc">Product development and building technical solutions. Electrical engineering, systems design and delivery. Focus on hardware, testing, microcontrollers, C programming, IoT, prototyping and radio technology. Experienced in measurements and fluent with high and low voltage analog systems.</p>
+                  </article>
+                  <article class="service-card">
+                    <h3 class="service-title">Go-to-Market &amp; Sales</h3>
+                    <p class="service-desc">Competitor analysis, sales strategy development and execution. New customer acquisition, managing CRM, outbound prospecting and outreach (cold calling). Testing product market fit assumptions and outbound approaches.</p>
+                  </article>
+                  <article class="service-card">
+                    <h3 class="service-title">Management Advice</h3>
+                    <p class="service-desc">Objective business counseling and personal leadership coaching. Internal current state analysis including recommendations on team management and interpersonal levels.</p>
+                  </article>
+                  <article class="service-card">
+                    <h3 class="service-title">Security &amp; Control</h3>
+                    <p class="service-desc">Operations risk analysis and system governance. Internal current state analysis versus industry best practices. Including policy assessment, system vulnerability analysis, networks and business information security.</p>
+                  </article>
+                </div>
+              </div>
+              <p class="home-services-footer">Tekmob Oy 3570087-5</p>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
-    <!-- Services Section -->
-    <section class="features" id="services">
-        <div class="container">
-            <h2 class="section-title" id="solutions">Services</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <h3>Digital Transformation (DX)</h3>
-                    <p>Help your business to become a learning organization which embraces the technological transformation and the usage of artificial intelligence (AI). Providing the tools and skills for sustainable cultural transformation to boost innovation and efficiency.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Sales Development Representative (SDR)</h3>
-                    <p>Drive your pipeline and validate market fit with dedicated SDRs at the customer frontline, define your Ideal Customer Profile (ICP), uncover customer insights, book monthly meetings to fuel growth, and test core business assumptions.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Product Development</h3>
-                    <p>Boost product development with a dedicated electrical engineer focused on developing, prototyping, and iterating products. Prioritize documentation, customer context, and use-case testing. Experience with both software and hardware development.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Security Expert</h3>
-                    <p>Information systems (IT) security and risk analysis. Evaluation of the business-critical infrastructure and work behaviors of the people. Giving technical recommendations and facilitating internal workshops to educate employees on policies.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Consultant</h3>
-                    <p>Solve business problems by finding the root causes, through data gathering, analyzing, making recommendations and facilitating execution.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Project Manager</h3>
-                    <p>Take responsibility for facilitating teams to drive collaboration for a common goal. Acting as a translator between the business and the engineering teams, driving team spirit and communication.</p>
-                </div>
-            </div>
+    <!-- About -->
+    <section id="about" class="tab-panel tab-panel--glow" role="tabpanel" aria-labelledby="tab-about" hidden>
+      <div class="landing-ambient landing-ambient--page" aria-hidden="true"></div>
+      <div class="about-content">
+        <h2 class="section-heading">About Me</h2>
+        <ul class="about-intro">
+          <li>Solo consultant</li>
+          <li>Master of Science</li>
+          <li>Bachelor of Engineering</li>
+        </ul>
+        <div class="about-section">
+          <h3 class="sub-heading">Background</h3>
+          <p class="body-copy">Electronics engineer with a strong background in product development and building technical solutions. Track record of delivering in fast-paced, unstructured environments.</p>
         </div>
+        <div class="about-section">
+          <h3 class="sub-heading">Framework</h3>
+          <p class="body-copy">Peter Block's <em>Flawless Consulting</em>: &ldquo;A Guide to Getting Your Expertise Used&rdquo;</p>
+        </div>
+        <div class="about-section">
+          <h3 class="sub-heading">Resume</h3>
+          <a href="./Resume%20Atte%20N%2E%2Epdf" class="contact-link contact-link--ghost" target="_blank" rel="noopener noreferrer">
+            Open resume (PDF)
+            <span class="link-arrow" aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
     </section>
 
-    <!-- Insight Section -->
-    <section class="features" style="padding: 80px 0;">
-        <div class="container">
-            <h2 class="section-title">Insight</h2>
-            <div style="max-width: 800px; margin: 0 auto;">
-                <p style="font-size: 18px; color: var(--text-light); line-height: 1.8;">Old conversations lead to old actions. A consultant must set an example, by shifting the ownership of the room. Particular events are a sample and leading indicator for all future meetings.</p>
-            </div>
+    <!-- Contact -->
+    <section id="contact" class="tab-panel tab-panel--glow" role="tabpanel" aria-labelledby="tab-contact" hidden>
+      <div class="landing-ambient landing-ambient--page" aria-hidden="true"></div>
+      <div class="contact-content">
+        <h2 class="section-heading">Get in Touch</h2>
+        <div class="contact-links">
+          <a href="https://github.com/mcatsku" class="contact-link contact-link--ghost" target="_blank" rel="noopener noreferrer">
+            github.com/mcatsku
+            <span class="link-arrow" aria-hidden="true">↗</span>
+          </a>
+          <a href="tel:+358451084774" class="contact-link contact-link--ghost">
+            +358 45 108 4774
+            <span class="link-arrow" aria-hidden="true">↗</span>
+          </a>
+          <a href="https://calendar.proton.me/bookings#CppxBV-J1fGW0lrfEm2di80X8o7z9setK14ssYY563Q=" class="contact-link contact-link--ghost" target="_blank" rel="noopener noreferrer">
+            Meet with Atte
+            <span class="link-arrow" aria-hidden="true">↗</span>
+          </a>
+          <a href="mailto:info@tekmob.fi" class="contact-btn">
+            info@tekmob.fi
+            <span class="link-arrow" aria-hidden="true">↗</span>
+          </a>
         </div>
+      </div>
     </section>
+  </main>
 
-    <!-- CTA Section -->
-    <section class="cta-section" id="contact">
-        <div class="container">
-            <h2>Ready to Transform Your Business?</h2>
-            <p>Let's discuss how we can help you achieve your goals</p>
-            <a href="mailto:info@tekmob.fi" class="cta-button-primary">Contact</a>
-        </div>
-    </section>
+  <footer class="site-footer">
+    Tekmob Oy 3570087-5
+  </footer>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-bottom">
-                <p>Tekmob Oy 3570087-5</p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        function toggleMobileMenu() {
-            const navLinks = document.getElementById('navLinks');
-            navLinks.classList.toggle('active');
-        }
-
-        function closeMobileMenu() {
-            const navLinks = document.getElementById('navLinks');
-            navLinks.classList.remove('active');
-        }
-    </script>
+  <script src="script.js"></script>
 </body>
 </html>
