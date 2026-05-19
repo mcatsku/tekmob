@@ -494,15 +494,7 @@ body.body--home-active .site-footer {
 }
 
 .home-services-scroll .section-heading {
-  background: linear-gradient(
-    90deg,
-    var(--ribbon-warm) 0%,
-    var(--ribbon-mid) 45%,
-    var(--ribbon-cool) 100%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--color-text);
 }
 
 @media (prefers-reduced-motion: reduce) {
